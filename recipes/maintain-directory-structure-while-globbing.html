@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Fast browserify builds with watchify | Gulp Documentation</title>
+        <title>Maintain Directory Structure while Globbing | Gulp Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.3.1">
@@ -25,10 +25,8 @@
         
     
     
-    <link rel="next" href="../recipes/incremental-builds-with-concatenate.html" />
     
-    
-    <link rel="prev" href="../recipes/delete-files-folder.html" />
+    <link rel="prev" href="../recipes/handling-the-delete-event-on-watch.html" />
     
 
         
@@ -36,7 +34,7 @@
     <body>
         
         
-    <div class="book" data-level="6.4" data-basepath=".." data-revision="Wed Sep 09 2015 13:50:23 GMT+0800 (CST)">
+    <div class="book" data-level="6.25" data-basepath=".." data-revision="Wed Sep 09 2015 13:50:23 GMT+0800 (CST)">
     
 
 <div class="book-summary">
@@ -283,7 +281,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="6.4" data-path="recipes/fast-browserify-builds-with-watchify.html">
+        <li class="chapter " data-level="6.4" data-path="recipes/fast-browserify-builds-with-watchify.html">
             
                 
                     <a href="../recipes/fast-browserify-builds-with-watchify.html">
@@ -598,7 +596,7 @@
             
         </li>
     
-        <li class="chapter " data-level="6.25" data-path="recipes/maintain-directory-structure-while-globbing.html">
+        <li class="chapter active" data-level="6.25" data-path="recipes/maintain-directory-structure-while-globbing.html">
             
                 
                     <a href="../recipes/maintain-directory-structure-while-globbing.html">
@@ -723,50 +721,36 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="fast-browserify-builds-with-watchify">Fast browserify builds with watchify</h1>
-<p>As a <a href="http://github.com/substack/node-browserify" target="_blank">browserify</a> project begins to expand, the time to bundle it slowly gets longer and longer. While it might start at 1 second, it&apos;s possible to be waiting 30 seconds for your project to build on particularly large projects.</p>
-<p>That&apos;s why <a href="http://github.com/substack" target="_blank">substack</a> wrote <a href="http://github.com/substack/watchify" target="_blank">watchify</a>, a persistent browserify bundler that watches files for changes and <em>only rebuilds what it needs to</em>. This way, that first build might still take 30 seconds, but subsequent builds can still run in under 100ms &#x2013; which is a huge improvement.</p>
-<p>Watchify doesn&apos;t have a gulp plugin, and it doesn&apos;t need one: you can use <a href="http://github.com/hughsk/vinyl-source-stream" target="_blank">vinyl-source-stream</a> to pipe the bundle stream into your gulp pipeline.</p>
-<pre><code class="lang-javascript"><span class="hljs-pi">&apos;use strict&apos;</span>;
-
-<span class="hljs-keyword">var</span> watchify = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;watchify&apos;</span>);
-<span class="hljs-keyword">var</span> browserify = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;browserify&apos;</span>);
-<span class="hljs-keyword">var</span> gulp = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp&apos;</span>);
-<span class="hljs-keyword">var</span> source = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;vinyl-source-stream&apos;</span>);
-<span class="hljs-keyword">var</span> buffer = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;vinyl-buffer&apos;</span>);
-<span class="hljs-keyword">var</span> gutil = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp-util&apos;</span>);
-<span class="hljs-keyword">var</span> sourcemaps = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp-sourcemaps&apos;</span>);
-<span class="hljs-keyword">var</span> assign = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;lodash.assign&apos;</span>);
-
-<span class="hljs-comment">// add custom browserify options here</span>
-<span class="hljs-keyword">var</span> customOpts = {
-  entries: [<span class="hljs-string">&apos;./src/index.js&apos;</span>],
-  debug: <span class="hljs-literal">true</span>
-};
-<span class="hljs-keyword">var</span> opts = assign({}, watchify.args, customOpts);
-<span class="hljs-keyword">var</span> b = watchify(browserify(opts)); 
-
-<span class="hljs-comment">// add transformations here</span>
-<span class="hljs-comment">// i.e. b.transform(coffeeify);</span>
-
-gulp.task(<span class="hljs-string">&apos;js&apos;</span>, bundle); <span class="hljs-comment">// so you can run `gulp js` to build the file</span>
-b.on(<span class="hljs-string">&apos;update&apos;</span>, bundle); <span class="hljs-comment">// on any dep update, runs the bundler</span>
-b.on(<span class="hljs-string">&apos;log&apos;</span>, gutil.log); <span class="hljs-comment">// output build logs to terminal</span>
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bundle</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">return</span> b.bundle()
-    <span class="hljs-comment">// log errors if they happen</span>
-    .on(<span class="hljs-string">&apos;error&apos;</span>, gutil.log.bind(gutil, <span class="hljs-string">&apos;Browserify Error&apos;</span>))
-    .pipe(source(<span class="hljs-string">&apos;bundle.js&apos;</span>))
-    <span class="hljs-comment">// optional, remove if you don&apos;t need to buffer file contents</span>
-    .pipe(buffer())
-    <span class="hljs-comment">// optional, remove if you dont want sourcemaps</span>
-    .pipe(sourcemaps.init({loadMaps: <span class="hljs-literal">true</span>})) <span class="hljs-comment">// loads map from browserify file</span>
-       <span class="hljs-comment">// Add transformation tasks to the pipeline here.</span>
-    .pipe(sourcemaps.write(<span class="hljs-string">&apos;./&apos;</span>)) <span class="hljs-comment">// writes .map file</span>
-    .pipe(gulp.dest(<span class="hljs-string">&apos;./dist&apos;</span>));
-}
+                        <h1 id="maintain-directory-structure-while-globbing">Maintain Directory Structure while Globbing</h1>
+<p>If you are planning to read a few files/folders from a directory and maintain their relative path, you need to pass <code>{base: &apos;.&apos;}</code> as the second argument to <code>gulp.src()</code>.</p>
+<p>For example, if you have a directory structure like </p>
+<p><img src="https://cloud.githubusercontent.com/assets/2562992/3178498/bedf75b4-ec1a-11e3-8a71-a150ad94b450.png" alt="Dev setup"></p>
+<p>and want to read only a few files say</p>
+<pre><code class="lang-js">[ <span class="hljs-string">&apos;index.html&apos;</span>,
+ <span class="hljs-string">&apos;css/**&apos;</span>,
+ <span class="hljs-string">&apos;js/**&apos;</span>,
+ <span class="hljs-string">&apos;lib/**&apos;</span>,
+ <span class="hljs-string">&apos;images/**&apos;</span>,
+ <span class="hljs-string">&apos;plugin/**&apos;</span>
+ ]
 </code></pre>
+<p>In this case, Gulp will read all the sub-folders of (<em>say</em>) <code>css</code> folder and arrange them relative to your root folder and they will no longer be the sub-folder of <code>css</code>. The output after globbing would look like</p>
+<p><img src="https://cloud.githubusercontent.com/assets/2562992/3178614/27208c52-ec1c-11e3-852e-8bbb8e420c7f.png" alt="Zipped-Unzipped"></p>
+<p>If you want to maintain the structure, you need to pass <code>{base: &apos;.&apos;}</code> to <code>gulp.src()</code>. Like</p>
+<pre><code class="lang-js">gulp.task(<span class="hljs-string">&apos;task&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+   gulp.src([<span class="hljs-string">&apos;index.html&apos;</span>, 
+             <span class="hljs-string">&apos;css/**&apos;</span>, 
+             <span class="hljs-string">&apos;js/**&apos;</span>, 
+             <span class="hljs-string">&apos;lib/**&apos;</span>, 
+             <span class="hljs-string">&apos;images/**&apos;</span>, 
+             <span class="hljs-string">&apos;plugin/**&apos;</span>
+             ], {base: <span class="hljs-string">&apos;.&apos;</span>})
+       .pipe(operation1())
+       .pipe(operation2());
+});
+</code></pre>
+<p>And the input to your <code>operation1()</code> will be a folder structure like </p>
+<p><img src="https://cloud.githubusercontent.com/assets/2562992/3178607/053d6722-ec1c-11e3-9ba8-7ce39e1a480e.png" alt="with-base"></p>
 
                     
                     </section>
@@ -777,10 +761,8 @@ b.on(<span class="hljs-string">&apos;log&apos;</span>, gutil.log); <span class="
         </div>
 
         
-        <a href="../recipes/delete-files-folder.html" class="navigation navigation-prev " aria-label="Previous page: Delete files and folders"><i class="fa fa-angle-left"></i></a>
+        <a href="../recipes/handling-the-delete-event-on-watch.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Handling the Delete Event on Watch"><i class="fa fa-angle-left"></i></a>
         
-        
-        <a href="../recipes/incremental-builds-with-concatenate.html" class="navigation navigation-next " aria-label="Next page: Incremental rebuilding, including operating on full file sets"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

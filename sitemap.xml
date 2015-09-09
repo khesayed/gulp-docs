@@ -7,12 +7,15 @@
 <url> <loc>http://gulpjs.org/getting-started.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://gulpjs.org/recipes/mocha-test-runner-with-gulp.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://gulpjs.org/recipes/index.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://gulpjs.org/recipes/browserify-transforms.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://gulpjs.org/recipes/browserify-uglify-sourcemap.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://gulpjs.org/recipes/browserify-with-globs.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://gulpjs.org/recipes/combining-streams-to-handle-errors.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://gulpjs.org/recipes/delete-files-folder.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://gulpjs.org/recipes/fast-browserify-builds-with-watchify.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://gulpjs.org/recipes/handling-the-delete-event-on-watch.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://gulpjs.org/recipes/incremental-builds-with-concatenate.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://gulpjs.org/recipes/maintain-directory-structure-while-globbing.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://gulpjs.org/recipes/make-stream-from-buffer.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://gulpjs.org/recipes/minified-and-non-minified.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://gulpjs.org/recipes/automate-release-workflow.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>

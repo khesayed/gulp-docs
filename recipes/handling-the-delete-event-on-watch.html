@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Fast browserify builds with watchify | Gulp Documentation</title>
+        <title>Handling the Delete Event on Watch | Gulp Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.3.1">
@@ -25,10 +25,10 @@
         
     
     
-    <link rel="next" href="../recipes/incremental-builds-with-concatenate.html" />
+    <link rel="next" href="../recipes/maintain-directory-structure-while-globbing.html" />
     
     
-    <link rel="prev" href="../recipes/delete-files-folder.html" />
+    <link rel="prev" href="../recipes/templating-with-swig-and-yaml-front-matter.html" />
     
 
         
@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="6.4" data-basepath=".." data-revision="Wed Sep 09 2015 13:50:23 GMT+0800 (CST)">
+    <div class="book" data-level="6.24" data-basepath=".." data-revision="Wed Sep 09 2015 13:50:23 GMT+0800 (CST)">
     
 
 <div class="book-summary">
@@ -283,7 +283,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="6.4" data-path="recipes/fast-browserify-builds-with-watchify.html">
+        <li class="chapter " data-level="6.4" data-path="recipes/fast-browserify-builds-with-watchify.html">
             
                 
                     <a href="../recipes/fast-browserify-builds-with-watchify.html">
@@ -583,7 +583,7 @@
             
         </li>
     
-        <li class="chapter " data-level="6.24" data-path="recipes/handling-the-delete-event-on-watch.html">
+        <li class="chapter active" data-level="6.24" data-path="recipes/handling-the-delete-event-on-watch.html">
             
                 
                     <a href="../recipes/handling-the-delete-event-on-watch.html">
@@ -723,49 +723,40 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="fast-browserify-builds-with-watchify">Fast browserify builds with watchify</h1>
-<p>As a <a href="http://github.com/substack/node-browserify" target="_blank">browserify</a> project begins to expand, the time to bundle it slowly gets longer and longer. While it might start at 1 second, it&apos;s possible to be waiting 30 seconds for your project to build on particularly large projects.</p>
-<p>That&apos;s why <a href="http://github.com/substack" target="_blank">substack</a> wrote <a href="http://github.com/substack/watchify" target="_blank">watchify</a>, a persistent browserify bundler that watches files for changes and <em>only rebuilds what it needs to</em>. This way, that first build might still take 30 seconds, but subsequent builds can still run in under 100ms &#x2013; which is a huge improvement.</p>
-<p>Watchify doesn&apos;t have a gulp plugin, and it doesn&apos;t need one: you can use <a href="http://github.com/hughsk/vinyl-source-stream" target="_blank">vinyl-source-stream</a> to pipe the bundle stream into your gulp pipeline.</p>
-<pre><code class="lang-javascript"><span class="hljs-pi">&apos;use strict&apos;</span>;
+                        <h1 id="handling-the-delete-event-on-watch">Handling the Delete Event on Watch</h1>
+<p>You can listen for <code>&apos;change&apos;</code> events to fire on the watcher returned from <code>gulp.watch</code>.</p>
+<p>Each change event has a <code>type</code> property. If <code>type</code> is <code>&apos;deleted&apos;</code>, you can delete the file
+from your destination directory, using something like:</p>
+<pre><code class="lang-js"><span class="hljs-pi">&apos;use strict&apos;</span>;
 
-<span class="hljs-keyword">var</span> watchify = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;watchify&apos;</span>);
-<span class="hljs-keyword">var</span> browserify = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;browserify&apos;</span>);
+<span class="hljs-keyword">var</span> del = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;del&apos;</span>);
+<span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;path&apos;</span>);
 <span class="hljs-keyword">var</span> gulp = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp&apos;</span>);
-<span class="hljs-keyword">var</span> source = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;vinyl-source-stream&apos;</span>);
-<span class="hljs-keyword">var</span> buffer = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;vinyl-buffer&apos;</span>);
-<span class="hljs-keyword">var</span> gutil = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp-util&apos;</span>);
-<span class="hljs-keyword">var</span> sourcemaps = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp-sourcemaps&apos;</span>);
-<span class="hljs-keyword">var</span> assign = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;lodash.assign&apos;</span>);
+<span class="hljs-keyword">var</span> header = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp-header&apos;</span>);
+<span class="hljs-keyword">var</span> footer = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp-footer&apos;</span>);
 
-<span class="hljs-comment">// add custom browserify options here</span>
-<span class="hljs-keyword">var</span> customOpts = {
-  entries: [<span class="hljs-string">&apos;./src/index.js&apos;</span>],
-  debug: <span class="hljs-literal">true</span>
-};
-<span class="hljs-keyword">var</span> opts = assign({}, watchify.args, customOpts);
-<span class="hljs-keyword">var</span> b = watchify(browserify(opts)); 
+gulp.task(<span class="hljs-string">&apos;scripts&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> gulp.src(<span class="hljs-string">&apos;src/**/*.js&apos;</span>, {base: <span class="hljs-string">&apos;src&apos;</span>})
+    .pipe(header(<span class="hljs-string">&apos;(function () {\r\n\t\&apos;use strict\&apos;\r\n&apos;</span>))
+    .pipe(footer(<span class="hljs-string">&apos;\r\n})();&apos;</span>))
+    .pipe(gulp.dest(<span class="hljs-string">&apos;build&apos;</span>));
+});
 
-<span class="hljs-comment">// add transformations here</span>
-<span class="hljs-comment">// i.e. b.transform(coffeeify);</span>
+gulp.task(<span class="hljs-string">&apos;watch&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> watcher = gulp.watch(<span class="hljs-string">&apos;src/**/*.js&apos;</span>, [<span class="hljs-string">&apos;scripts&apos;</span>]);
 
-gulp.task(<span class="hljs-string">&apos;js&apos;</span>, bundle); <span class="hljs-comment">// so you can run `gulp js` to build the file</span>
-b.on(<span class="hljs-string">&apos;update&apos;</span>, bundle); <span class="hljs-comment">// on any dep update, runs the bundler</span>
-b.on(<span class="hljs-string">&apos;log&apos;</span>, gutil.log); <span class="hljs-comment">// output build logs to terminal</span>
+  watcher.on(<span class="hljs-string">&apos;change&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) </span>{
+    <span class="hljs-keyword">if</span> (event.type === <span class="hljs-string">&apos;deleted&apos;</span>) {
+      <span class="hljs-comment">// Simulating the {base: &apos;src&apos;} used with gulp.src in the scripts task</span>
+      <span class="hljs-keyword">var</span> filePathFromSrc = path.relative(path.resolve(<span class="hljs-string">&apos;src&apos;</span>), event.path);
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bundle</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">return</span> b.bundle()
-    <span class="hljs-comment">// log errors if they happen</span>
-    .on(<span class="hljs-string">&apos;error&apos;</span>, gutil.log.bind(gutil, <span class="hljs-string">&apos;Browserify Error&apos;</span>))
-    .pipe(source(<span class="hljs-string">&apos;bundle.js&apos;</span>))
-    <span class="hljs-comment">// optional, remove if you don&apos;t need to buffer file contents</span>
-    .pipe(buffer())
-    <span class="hljs-comment">// optional, remove if you dont want sourcemaps</span>
-    .pipe(sourcemaps.init({loadMaps: <span class="hljs-literal">true</span>})) <span class="hljs-comment">// loads map from browserify file</span>
-       <span class="hljs-comment">// Add transformation tasks to the pipeline here.</span>
-    .pipe(sourcemaps.write(<span class="hljs-string">&apos;./&apos;</span>)) <span class="hljs-comment">// writes .map file</span>
-    .pipe(gulp.dest(<span class="hljs-string">&apos;./dist&apos;</span>));
-}
+      <span class="hljs-comment">// Concatenating the &apos;build&apos; absolute path used by gulp.dest in the scripts task</span>
+      <span class="hljs-keyword">var</span> destFilePath = path.resolve(<span class="hljs-string">&apos;build&apos;</span>, filePathFromSrc);
+
+      del.sync(destFilePath);
+    }
+  });
+});
 </code></pre>
 
                     
@@ -777,10 +768,10 @@ b.on(<span class="hljs-string">&apos;log&apos;</span>, gutil.log); <span class="
         </div>
 
         
-        <a href="../recipes/delete-files-folder.html" class="navigation navigation-prev " aria-label="Previous page: Delete files and folders"><i class="fa fa-angle-left"></i></a>
+        <a href="../recipes/templating-with-swig-and-yaml-front-matter.html" class="navigation navigation-prev " aria-label="Previous page: Templating with Swig and YAML front-matter"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../recipes/incremental-builds-with-concatenate.html" class="navigation navigation-next " aria-label="Next page: Incremental rebuilding, including operating on full file sets"><i class="fa fa-angle-right"></i></a>
+        <a href="../recipes/maintain-directory-structure-while-globbing.html" class="navigation navigation-next " aria-label="Next page: Maintain Directory Structure while Globbing"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
