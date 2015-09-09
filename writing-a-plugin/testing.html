@@ -1,0 +1,809 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Testing | Gulp Documentation</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.3.1">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../writing-a-plugin/recommended-modules.html" />
+    
+    
+    <link rel="prev" href="../writing-a-plugin/dealing-with-streams.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book" data-level="4.4" data-basepath=".." data-revision="Wed Sep 09 2015 12:03:47 GMT+0800 (CST)">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        
+        
+        
+
+        
+
+        
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="getting-started.html">
+            
+                
+                    <a href="../getting-started.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Getting Started
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="API.html">
+            
+                
+                    <a href="../API.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        API
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="CLI.html">
+            
+                
+                    <a href="../CLI.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        CLI
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="writing-a-plugin/index.html">
+            
+                
+                    <a href="../writing-a-plugin/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Writing a Plugin
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="writing-a-plugin/guidelines.html">
+            
+                
+                    <a href="../writing-a-plugin/guidelines.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Guidelines
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="writing-a-plugin/using-buffers.html">
+            
+                
+                    <a href="../writing-a-plugin/using-buffers.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Using buffers
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="writing-a-plugin/dealing-with-streams.html">
+            
+                
+                    <a href="../writing-a-plugin/dealing-with-streams.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        Dealing with streams
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="4.4" data-path="writing-a-plugin/testing.html">
+            
+                
+                    <a href="../writing-a-plugin/testing.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        Testing
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="writing-a-plugin/recommended-modules.html">
+            
+                
+                    <a href="../writing-a-plugin/recommended-modules.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.5.</b>
+                        
+                        Recommended Modules
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="FAQ.html">
+            
+                
+                    <a href="../FAQ.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        FAQ
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="recipes/index.html">
+            
+                
+                    <a href="../recipes/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Recipes
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="recipes/automate-release-workflow.html">
+            
+                
+                    <a href="../recipes/automate-release-workflow.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Automate release workflow
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="recipes/combining-streams-to-handle-errors.html">
+            
+                
+                    <a href="../recipes/combining-streams-to-handle-errors.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        Combining streams to handle errors
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="recipes/delete-files-folder.html">
+            
+                
+                    <a href="../recipes/delete-files-folder.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        Delete files and folders
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="recipes/fast-browserify-builds-with-watchify.html">
+            
+                
+                    <a href="../recipes/fast-browserify-builds-with-watchify.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.4.</b>
+                        
+                        Fast browserify builds with watchify
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.5" data-path="recipes/incremental-builds-with-concatenate.html">
+            
+                
+                    <a href="../recipes/incremental-builds-with-concatenate.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.5.</b>
+                        
+                        Incremental rebuilding, including operating on full file sets
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.6" data-path="recipes/make-stream-from-buffer.html">
+            
+                
+                    <a href="../recipes/make-stream-from-buffer.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.6.</b>
+                        
+                        Make stream from buffer (memory contents)
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.7" data-path="recipes/mocha-test-runner-with-gulp.html">
+            
+                
+                    <a href="../recipes/mocha-test-runner-with-gulp.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.7.</b>
+                        
+                        Mocha test-runner with gulp
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.8" data-path="recipes/only-pass-through-changed-files.html">
+            
+                
+                    <a href="../recipes/only-pass-through-changed-files.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.8.</b>
+                        
+                        Only pass through changed files
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.9" data-path="recipes/pass-arguments-from-cli.html">
+            
+                
+                    <a href="../recipes/pass-arguments-from-cli.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.9.</b>
+                        
+                        Pass parameters from the command line
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.10" data-path="recipes/rebuild-only-files-that-change.html">
+            
+                
+                    <a href="../recipes/rebuild-only-files-that-change.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.10.</b>
+                        
+                        Rebuild only files that change
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.11" data-path="recipes/running-task-steps-per-folder.html">
+            
+                
+                    <a href="../recipes/running-task-steps-per-folder.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.11.</b>
+                        
+                        Generating a file per folder
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.12" data-path="recipes/running-tasks-in-series.html">
+            
+                
+                    <a href="../recipes/running-tasks-in-series.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.12.</b>
+                        
+                        Running tasks in series
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.13" data-path="recipes/server-with-livereload-and-css-injection.html">
+            
+                
+                    <a href="../recipes/server-with-livereload-and-css-injection.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.13.</b>
+                        
+                        Server with live-reloading and CSS injection
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.14" data-path="recipes/sharing-streams-with-stream-factories.html">
+            
+                
+                    <a href="../recipes/sharing-streams-with-stream-factories.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.14.</b>
+                        
+                        Sharing streams with stream factories
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.15" data-path="recipes/specifying-a-cwd.html">
+            
+                
+                    <a href="../recipes/specifying-a-cwd.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.15.</b>
+                        
+                        Specifying a new cwd (current working directory)
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.16" data-path="recipes/split-tasks-across-multiple-files.html">
+            
+                
+                    <a href="../recipes/split-tasks-across-multiple-files.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.16.</b>
+                        
+                        Split tasks across multiple files
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.17" data-path="recipes/using-external-config-file.html">
+            
+                
+                    <a href="../recipes/using-external-config-file.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.17.</b>
+                        
+                        Using external config file
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.18" data-path="recipes/using-multiple-sources-in-one-task.html">
+            
+                
+                    <a href="../recipes/using-multiple-sources-in-one-task.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.18.</b>
+                        
+                        Using multiple sources in one task
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.19" data-path="recipes/browserify-uglify-sourcemap.html">
+            
+                
+                    <a href="../recipes/browserify-uglify-sourcemap.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.19.</b>
+                        
+                        Browserify + Uglify with sourcemaps
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.20" data-path="recipes/browserify-with-globs.html">
+            
+                
+                    <a href="../recipes/browserify-with-globs.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.20.</b>
+                        
+                        Browserify + Globs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.21" data-path="recipes/minified-and-non-minified.html">
+            
+                
+                    <a href="../recipes/minified-and-non-minified.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.21.</b>
+                        
+                        Output both a minified and non-minified version
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.22" data-path="recipes/templating-with-swig-and-yaml-front-matter.html">
+            
+                
+                    <a href="../recipes/templating-with-swig-and-yaml-front-matter.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.22.</b>
+                        
+                        Templating with Swig and YAML front-matter
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                Published with GitBook
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">
+                    Share on Twitter
+                </button>
+                <button type="button" data-sharing="google-plus" class="button">
+                    Share on Google
+                </button>
+                <button type="button" data-sharing="facebook" class="button">
+                    Share on Facebook
+                </button>
+                <button type="button" data-sharing="weibo" class="button">
+                    Share on Weibo
+                </button>
+                <button type="button" data-sharing="instapaper" class="button">
+                    Share on Instapaper
+                </button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+    
+
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >Gulp Documentation</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="testing">Testing</h1>
+<blockquote>
+<p>Testing your plugin is the only way to ensure quality. It brings confidence to your users and makes your life easier.</p>
+</blockquote>
+<p><a href="index.html">Writing a Plugin</a> &gt; Testing</p>
+<h2 id="tooling">Tooling</h2>
+<p>Most plugins use <a href="https://github.com/mochajs/mocha" target="_blank">mocha</a>, <a href="https://github.com/shouldjs/should.js" target="_blank">should</a> and <a href="https://github.com/dominictarr/event-stream" target="_blank">event-stream</a> to help them test. The following examples will use these tools.</p>
+<h2 id="testing-plugins-for-streaming-mode">Testing plugins for streaming mode</h2>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> assert = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;assert&apos;</span>);
+<span class="hljs-keyword">var</span> es = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;event-stream&apos;</span>);
+<span class="hljs-keyword">var</span> File = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;vinyl&apos;</span>);
+<span class="hljs-keyword">var</span> prefixer = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;../&apos;</span>);
+
+describe(<span class="hljs-string">&apos;gulp-prefixer&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  describe(<span class="hljs-string">&apos;in streaming mode&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+
+    it(<span class="hljs-string">&apos;should prepend text&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">done</span>) </span>{
+
+      <span class="hljs-comment">// create the fake file</span>
+      <span class="hljs-keyword">var</span> fakeFile = <span class="hljs-keyword">new</span> File({
+        contents: es.readArray([<span class="hljs-string">&apos;stream&apos;</span>, <span class="hljs-string">&apos;with&apos;</span>, <span class="hljs-string">&apos;those&apos;</span>, <span class="hljs-string">&apos;contents&apos;</span>])
+      });
+
+      <span class="hljs-comment">// Create a prefixer plugin stream</span>
+      <span class="hljs-keyword">var</span> myPrefixer = prefixer(<span class="hljs-string">&apos;prependthis&apos;</span>);
+
+      <span class="hljs-comment">// write the fake file to it</span>
+      myPrefixer.write(fakeFile);
+
+      <span class="hljs-comment">// wait for the file to come back out</span>
+      myPrefixer.once(<span class="hljs-string">&apos;data&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">file</span>) </span>{
+        <span class="hljs-comment">// make sure it came out the same way it went in</span>
+        assert(file.isStream());
+
+        <span class="hljs-comment">// buffer the contents to make sure it got prepended to</span>
+        file.contents.pipe(es.wait(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, data</span>) </span>{
+          <span class="hljs-comment">// check the contents</span>
+          assert.equal(data, <span class="hljs-string">&apos;prependthisstreamwiththosecontents&apos;</span>);
+          done();
+        }));
+      });
+
+    });
+
+  });
+});
+</code></pre>
+<h2 id="testing-plugins-for-buffer-mode">Testing plugins for buffer mode</h2>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> assert = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;assert&apos;</span>);
+<span class="hljs-keyword">var</span> es = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;event-stream&apos;</span>);
+<span class="hljs-keyword">var</span> File = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;vinyl&apos;</span>);
+<span class="hljs-keyword">var</span> prefixer = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;../&apos;</span>);
+
+describe(<span class="hljs-string">&apos;gulp-prefixer&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  describe(<span class="hljs-string">&apos;in buffer mode&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+
+    it(<span class="hljs-string">&apos;should prepend text&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">done</span>) </span>{
+
+      <span class="hljs-comment">// create the fake file</span>
+      <span class="hljs-keyword">var</span> fakeFile = <span class="hljs-keyword">new</span> File({
+        contents: <span class="hljs-keyword">new</span> Buffer(<span class="hljs-string">&apos;abufferwiththiscontent&apos;</span>)
+      });
+
+      <span class="hljs-comment">// Create a prefixer plugin stream</span>
+      <span class="hljs-keyword">var</span> myPrefixer = prefixer(<span class="hljs-string">&apos;prependthis&apos;</span>);
+
+      <span class="hljs-comment">// write the fake file to it</span>
+      myPrefixer.write(fakeFile);
+
+      <span class="hljs-comment">// wait for the file to come back out</span>
+      myPrefixer.once(<span class="hljs-string">&apos;data&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">file</span>) </span>{
+        <span class="hljs-comment">// make sure it came out the same way it went in</span>
+        assert(file.isBuffer());
+
+        <span class="hljs-comment">// check the contents</span>
+        assert.equal(file.contents.toString(<span class="hljs-string">&apos;utf8&apos;</span>), <span class="hljs-string">&apos;prependthisabufferwiththiscontent&apos;</span>);
+        done();
+      });
+
+    });
+
+  });
+});
+</code></pre>
+<h2 id="some-plugins-with-high-quality-testing">Some plugins with high-quality Testing</h2>
+<ul>
+<li><a href="https://github.com/ben-eb/gulp-cat/blob/master/test.js" target="_blank">gulp-cat</a></li>
+<li><a href="https://github.com/wearefractal/gulp-concat/blob/master/test/main.js" target="_blank">gulp-concat</a></li>
+</ul>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../writing-a-plugin/dealing-with-streams.html" class="navigation navigation-prev " aria-label="Previous page: Dealing with streams"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../writing-a-plugin/recommended-modules.html" class="navigation navigation-next " aria-label="Next page: Recommended Modules"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-ga/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2},"ga":{"token":"UA-36637973-3","configuration":"auto"},"sitemap":{"hostname":"http://gulpjs.org/"}};
+    gitbook.start(config);
+});
+</script>
+
+        <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-36637973-3', 'auto');ga('send', 'pageview');</script>
+    </body>
+    
+</html>
