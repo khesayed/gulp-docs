@@ -6,7 +6,7 @@
 <url> <loc>http://gulpjs.org/API.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://gulpjs.org/getting-started.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://gulpjs.org/recipes/mocha-test-runner-with-gulp.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
-<url> <loc>http://gulpjs.org/recipes/index.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://gulpjs.org/recipes/automate-release-workflow.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://gulpjs.org/recipes/browserify-uglify-sourcemap.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://gulpjs.org/recipes/browserify-with-globs.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://gulpjs.org/recipes/combining-streams-to-handle-errors.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
@@ -15,7 +15,6 @@
 <url> <loc>http://gulpjs.org/recipes/incremental-builds-with-concatenate.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://gulpjs.org/recipes/make-stream-from-buffer.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://gulpjs.org/recipes/minified-and-non-minified.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
-<url> <loc>http://gulpjs.org/recipes/automate-release-workflow.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://gulpjs.org/recipes/only-pass-through-changed-files.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://gulpjs.org/recipes/pass-arguments-from-cli.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://gulpjs.org/recipes/rebuild-only-files-that-change.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
@@ -28,7 +27,6 @@
 <url> <loc>http://gulpjs.org/recipes/templating-with-swig-and-yaml-front-matter.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://gulpjs.org/recipes/using-external-config-file.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://gulpjs.org/recipes/using-multiple-sources-in-one-task.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
-<url> <loc>http://gulpjs.org/writing-a-plugin/index.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://gulpjs.org/writing-a-plugin/dealing-with-streams.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://gulpjs.org/writing-a-plugin/guidelines.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://gulpjs.org/writing-a-plugin/recommended-modules.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
