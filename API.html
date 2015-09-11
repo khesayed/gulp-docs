@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="2" data-basepath="." data-revision="Fri Sep 11 2015 11:22:20 GMT+0800 (CST)">
+    <div class="book" data-level="2" data-basepath="." data-revision="Fri Sep 11 2015 11:31:51 GMT+0800 (CST)">
     
 
 <div class="book-summary">
@@ -725,14 +725,14 @@
                     
                         <h2 id="gulp-api-docs">gulp API docs</h2>
 <p>Jump to:
-  <a href="#gulpsrcglobs-options">gulp.src</a> |
-  <a href="#gulpdestpath-options">gulp.dest</a> |
-  <a href="#gulptaskname-deps-fn">gulp.task</a> |
-  <a href="#gulpwatchglob--opts-tasks-or-gulpwatchglob--opts-cb">gulp.watch</a></p>
+  <a href="#gulp-src-globs-options">gulp.src</a> |
+  <a href="#gulp-dest-path-options">gulp.dest</a> |
+  <a href="#gulp-task-name-deps-fn">gulp.task</a> |
+  <a href="#gulp-watch-glob-opts-tasks-or-gulp-watch-glob-opts-cb">gulp.watch</a></p>
 <h3 id="gulp-src-globs-options">gulp.src(globs[, options])</h3>
-<p>Emits files matching provided glob or an array of globs. 
-Returns a <a href="http://nodejs.org/api/stream.html" target="_blank">stream</a> of <a href="https://github.com/wearefractal/vinyl-fs" target="_blank">Vinyl files</a> 
-that can be <a href="http://nodejs.org/api/stream.html#stream_readable_pipe_destination_options" target="_blank">piped</a> 
+<p>Emits files matching provided glob or an array of globs.
+Returns a <a href="http://nodejs.org/api/stream.html" target="_blank">stream</a> of <a href="https://github.com/wearefractal/vinyl-fs" target="_blank">Vinyl files</a>
+that can be <a href="http://nodejs.org/api/stream.html#stream_readable_pipe_destination_options" target="_blank">piped</a>
 to plugins.</p>
 <pre><code class="lang-javascript">gulp.src(<span class="hljs-string">&apos;client/templates/*.jade&apos;</span>)
   .pipe(jade())
@@ -776,7 +776,7 @@ gulp.src(<span class="hljs-string">&apos;client/js/**/*.js&apos;</span>, { base:
   .pipe(gulp.dest(<span class="hljs-string">&apos;./build/minified_templates&apos;</span>));
 </code></pre>
 <p>The write path is calculated by appending the file relative path to the given
-destination directory. In turn, relative paths are calculated against the file base. 
+destination directory. In turn, relative paths are calculated against the file base.
 See <code>gulp.src</code> above for more info.</p>
 <h4 id="path">path</h4>
 <p>Type: <code>String</code> or <code>Function</code></p>
