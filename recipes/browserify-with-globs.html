@@ -8,7 +8,7 @@
         <title>Browserify + Globs | Gulp Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.3.1">
+        <meta name="generator" content="GitBook 2.4.3">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -19,6 +19,10 @@
         <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
         
     <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
     
     
 
@@ -36,22 +40,23 @@
     <body>
         
         
-    <div class="book" data-level="6.21" data-basepath=".." data-revision="Fri Sep 11 2015 12:15:01 GMT+0800 (CST)">
+    <div class="book" data-level="6.21" data-basepath=".." data-revision="Thu Oct 15 2015 23:53:16 GMT+0800 (CST)">
     
 
 <div class="book-summary">
-    <div class="book-search">
+    <div class="book-search" role="search">
         <input type="text" placeholder="Type to search" class="form-control" />
     </div>
-    <ul class="summary">
-        
-        
-        
-        
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
 
-        
+            
 
-        
+            
     
         <li class="chapter " data-level="0" data-path="index.html">
             
@@ -620,20 +625,21 @@
     
 
 
-        
-        <li class="divider"></li>
-        <li>
-            <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-                Published with GitBook
-            </a>
-        </li>
-        
-    </ul>
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
 </div>
 
     <div class="book-body">
         <div class="body-inner">
-            <div class="book-header">
+            <div class="book-header" role="navigation">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
     <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
@@ -717,7 +723,7 @@
     </h1>
 </div>
 
-            <div class="page-wrapper" tabindex="-1">
+            <div class="page-wrapper" tabindex="-1" role="main">
                 <div class="page-inner">
                 
                 
@@ -760,13 +766,7 @@ gulp.task(<span class="hljs-string">&apos;javascript&apos;</span>, <span class="
 
   <span class="hljs-comment">// &quot;globby&quot; replaces the normal &quot;gulp.src&quot; as Browserify</span>
   <span class="hljs-comment">// creates it&apos;s own readable stream.</span>
-  globby([<span class="hljs-string">&apos;./entries/*.js&apos;</span>], <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, entries</span>) </span>{
-    <span class="hljs-comment">// ensure any errors from globby are handled</span>
-    <span class="hljs-keyword">if</span> (err) {
-      bundledStream.emit(<span class="hljs-string">&apos;error&apos;</span>, err);
-      <span class="hljs-keyword">return</span>;
-    }
-
+  globby([<span class="hljs-string">&apos;./entries/*.js&apos;</span>]).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">entries</span>) </span>{
     <span class="hljs-comment">// create the Browserify instance.</span>
     <span class="hljs-keyword">var</span> b = browserify({
       entries: entries,
@@ -777,6 +777,9 @@ gulp.task(<span class="hljs-string">&apos;javascript&apos;</span>, <span class="
     <span class="hljs-comment">// pipe the Browserify stream into the stream we created earlier</span>
     <span class="hljs-comment">// this starts our gulp pipeline.</span>
     b.bundle().pipe(bundledStream);
+  }).catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>{
+    <span class="hljs-comment">// ensure any errors from globby are handled</span>
+    bundledStream.emit(<span class="hljs-string">&apos;error&apos;</span>, err);
   });
 
   <span class="hljs-comment">// finally, we return the stream, so gulp knows when this task is done.</span>
