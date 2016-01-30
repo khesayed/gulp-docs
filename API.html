@@ -8,7 +8,7 @@
         <title>API | Gulp Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.4.3">
+        <meta name="generator" content="GitBook 2.6.7">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -22,6 +22,14 @@
     
         
         <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-fontsettings/website.css">
         
     
     
@@ -40,13 +48,16 @@
     <body>
         
         
-    <div class="book" data-level="2" data-basepath="." data-revision="Thu Oct 15 2015 23:53:16 GMT+0800 (CST)">
+    <div class="book"
+        data-level="2"
+        data-chapter-title="API"
+        data-filepath="API.md"
+        data-basepath="."
+        data-revision="Sat Jan 30 2016 15:20:15 GMT+0800 (CST)"
+        data-innerlanguage="">
     
 
 <div class="book-summary">
-    <div class="book-search" role="search">
-        <input type="text" placeholder="Type to search" class="form-control" />
-    </div>
     <nav role="navigation">
         <ul class="summary">
             
@@ -641,80 +652,7 @@
         <div class="body-inner">
             <div class="book-header" role="navigation">
     <!-- Actions Left -->
-    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
-    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
     
-    <div id="font-settings-wrapper" class="dropdown pull-left">
-        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
-        </a>
-        <div class="dropdown-menu font-settings">
-    <div class="dropdown-caret">
-        <span class="caret-outer"></span>
-        <span class="caret-inner"></span>
-    </div>
-
-    <div class="buttons">
-        <button type="button" id="reduce-font-size" class="button size-2">A</button>
-        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
-    </div>
-
-    <div class="buttons font-family-list">
-        <button type="button" data-font="0" class="button">Serif</button>
-        <button type="button" data-font="1" class="button">Sans</button>
-    </div>
-
-    <div class="buttons color-theme-list">
-        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
-        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
-        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
-    </div>
-</div>
-
-    </div>
-
-    <!-- Actions Right -->
-    
-    <div class="dropdown pull-right">
-        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
-        </a>
-        <div class="dropdown-menu font-settings dropdown-left">
-            <div class="dropdown-caret">
-                <span class="caret-outer"></span>
-                <span class="caret-inner"></span>
-            </div>
-            <div class="buttons">
-                <button type="button" data-sharing="twitter" class="button">
-                    Share on Twitter
-                </button>
-                <button type="button" data-sharing="google-plus" class="button">
-                    Share on Google
-                </button>
-                <button type="button" data-sharing="facebook" class="button">
-                    Share on Facebook
-                </button>
-                <button type="button" data-sharing="weibo" class="button">
-                    Share on Weibo
-                </button>
-                <button type="button" data-sharing="instapaper" class="button">
-                    Share on Instapaper
-                </button>
-            </div>
-        </div>
-    </div>
-    
-
-    
-    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
-    
-    
-    
-
 
     <!-- Title -->
     <h1>
@@ -731,37 +669,43 @@
                     
                         <h2 id="gulp-api-docs">gulp API docs</h2>
 <p>Jump to:
-  <a href="#gulp-src-globs-options">gulp.src</a> |
-  <a href="#gulp-dest-path-options">gulp.dest</a> |
-  <a href="#gulp-task-name-deps-fn">gulp.task</a> |
-  <a href="#gulp-watch-glob-opts-tasks-or-gulp-watch-glob-opts-cb">gulp.watch</a></p>
-<h3 id="gulp-src-globs-options">gulp.src(globs[, options])</h3>
-<p>Emits files matching provided glob or an array of globs.
-Returns a <a href="http://nodejs.org/api/stream.html" target="_blank">stream</a> of <a href="https://github.com/wearefractal/vinyl-fs" target="_blank">Vinyl files</a>
-that can be <a href="http://nodejs.org/api/stream.html#stream_readable_pipe_destination_options" target="_blank">piped</a>
+  <a href="#gulpsrcglobs-options">gulp.src</a> |
+  <a href="#gulpdestpath-options">gulp.dest</a> |
+  <a href="#gulptaskname--deps-fn">gulp.task</a> |
+  <a href="#gulpwatchglob--opts-tasks-or-gulpwatchglob--opts-cb">gulp.watch</a></p>
+<h3 id="gulpsrcglobs-options">gulp.src(globs[, options])</h3>
+<p>Emits files matching provided glob or an array of globs. 
+Returns a <a href="http://nodejs.org/api/stream.html" target="_blank">stream</a> of <a href="https://github.com/wearefractal/vinyl-fs" target="_blank">Vinyl files</a> 
+that can be <a href="http://nodejs.org/api/stream.html#stream_readable_pipe_destination_options" target="_blank">piped</a> 
 to plugins.</p>
 <pre><code class="lang-javascript">gulp.src(<span class="hljs-string">&apos;client/templates/*.jade&apos;</span>)
   .pipe(jade())
   .pipe(minify())
   .pipe(gulp.dest(<span class="hljs-string">&apos;build/minified_templates&apos;</span>));
 </code></pre>
-<p><code>glob</code> refers to <a href="https://github.com/isaacs/node-glob" target="_blank">node-glob syntax</a> or it can be a direct file path.</p>
 <h4 id="globs">globs</h4>
 <p>Type: <code>String</code> or <code>Array</code></p>
-<p>Glob or array of globs to read.</p>
-<h4 id="options">options</h4>
+<p>Glob or array of globs to read. Globs use <a href="https://github.com/isaacs/node-glob" target="_blank">node-glob syntax</a> except that negation is fully supported.</p>
+<p>A glob that begins with <code>!</code> excludes matching files from the glob results up to that point. For example, consider this directory structure:</p>
+<pre><code>client/
+  a.js
+  bob.js
+  bad.js
+</code></pre><p>The following expression matches <code>a.js</code> and <code>bad.js</code>:</p>
+<pre><code>gulp.src([&apos;client/*.js&apos;, &apos;!client/b*.js&apos;, &apos;client/bad.js&apos;])
+</code></pre><h4 id="options">options</h4>
 <p>Type: <code>Object</code></p>
 <p>Options to pass to <a href="https://github.com/isaacs/node-glob" target="_blank">node-glob</a> through <a href="https://github.com/wearefractal/glob-stream" target="_blank">glob-stream</a>.</p>
-<p>gulp adds some additional options in addition to the <a href="https://github.com/isaacs/node-glob#options" target="_blank">options supported by node-glob</a> and <a href="https://github.com/wearefractal/glob-stream" target="_blank">glob-stream</a>:</p>
-<h4 id="options-buffer">options.buffer</h4>
+<p>gulp supports all <a href="https://github.com/isaacs/node-glob#options" target="_blank">options supported by node-glob</a> and <a href="https://github.com/wearefractal/glob-stream" target="_blank">glob-stream</a> except <code>ignore</code> and adds the following options.</p>
+<h5 id="optionsbuffer">options.buffer</h5>
 <p>Type: <code>Boolean</code>
 Default: <code>true</code></p>
 <p>Setting this to <code>false</code> will return <code>file.contents</code> as a stream and not buffer files. This is useful when working with large files. <strong>Note:</strong> Plugins might not implement support for streams.</p>
-<h4 id="options-read">options.read</h4>
+<h5 id="optionsread">options.read</h5>
 <p>Type: <code>Boolean</code>
 Default: <code>true</code></p>
 <p>Setting this to <code>false</code> will return <code>file.contents</code> as null and not read the file at all.</p>
-<h4 id="options-base">options.base</h4>
+<h5 id="optionsbase">options.base</h5>
 <p>Type: <code>String</code>
 Default: everything before a glob starts (see <a href="https://github.com/wearefractal/glob2base" target="_blank">glob2base</a>)</p>
 <p>E.g., consider <code>somefile.js</code> in <code>client/js/somedir</code>:</p>
@@ -773,7 +717,7 @@ gulp.src(<span class="hljs-string">&apos;client/js/**/*.js&apos;</span>, { base:
   .pipe(minify())
   .pipe(gulp.dest(<span class="hljs-string">&apos;build&apos;</span>));  <span class="hljs-comment">// Writes &apos;build/js/somedir/somefile.js&apos;</span>
 </code></pre>
-<h3 id="gulp-dest-path-options">gulp.dest(path[, options])</h3>
+<h3 id="gulpdestpath-options">gulp.dest(path[, options])</h3>
 <p>Can be piped to and it will write files. Re-emits all data passed to it so you can pipe to multiple folders.  Folders that don&apos;t exist will be created.</p>
 <pre><code class="lang-javascript">gulp.src(<span class="hljs-string">&apos;./client/templates/*.jade&apos;</span>)
   .pipe(jade())
@@ -782,28 +726,29 @@ gulp.src(<span class="hljs-string">&apos;client/js/**/*.js&apos;</span>, { base:
   .pipe(gulp.dest(<span class="hljs-string">&apos;./build/minified_templates&apos;</span>));
 </code></pre>
 <p>The write path is calculated by appending the file relative path to the given
-destination directory. In turn, relative paths are calculated against the file base.
+destination directory. In turn, relative paths are calculated against the file base. 
 See <code>gulp.src</code> above for more info.</p>
 <h4 id="path">path</h4>
 <p>Type: <code>String</code> or <code>Function</code></p>
 <p>The path (output folder) to write files to. Or a function that returns it, the function will be provided a <a href="https://github.com/wearefractal/vinyl" target="_blank">vinyl File instance</a>.</p>
 <h4 id="options">options</h4>
 <p>Type: <code>Object</code></p>
-<h4 id="options-cwd">options.cwd</h4>
+<h5 id="optionscwd">options.cwd</h5>
 <p>Type: <code>String</code>
 Default: <code>process.cwd()</code></p>
 <p><code>cwd</code> for the output folder, only has an effect if provided output folder is relative.</p>
-<h4 id="options-mode">options.mode</h4>
+<h5 id="optionsmode">options.mode</h5>
 <p>Type: <code>String</code>
 Default: <code>0777</code></p>
 <p>Octal permission string specifying mode for any folders that need to be created for output folder.</p>
-<h3 id="gulp-task-name-deps-fn">gulp.task(name[, deps], fn)</h3>
+<h3 id="gulptaskname--deps-fn">gulp.task(name [, deps, fn])</h3>
 <p>Define a task using <a href="https://github.com/robrich/orchestrator" target="_blank">Orchestrator</a>.</p>
 <pre><code class="lang-js">gulp.task(<span class="hljs-string">&apos;somename&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-comment">// Do stuff</span>
 });
 </code></pre>
 <h4 id="name">name</h4>
+<p>Type: <code>String</code></p>
 <p>The name of the task. Tasks that you want to run from the command line should not have spaces in them.</p>
 <h4 id="deps">deps</h4>
 <p>Type: <code>Array</code></p>
@@ -813,12 +758,23 @@ Default: <code>0777</code></p>
 });
 </code></pre>
 <p><strong>Note:</strong> Are your tasks running before the dependencies are complete?  Make sure your dependency tasks are correctly using the async run hints: take in a callback or return a promise or event stream.</p>
-<p>You can also omit the function if you only want to run the dependency tasks:</p>
+<p>You can also omit the function if you only want to run a bundle of dependency tasks:</p>
 <pre><code class="lang-js">gulp.task(<span class="hljs-string">&apos;build&apos;</span>, [<span class="hljs-string">&apos;array&apos;</span>, <span class="hljs-string">&apos;of&apos;</span>, <span class="hljs-string">&apos;task&apos;</span>, <span class="hljs-string">&apos;names&apos;</span>]);
 </code></pre>
 <p><strong>Note:</strong> The tasks will run in parallel (all at once), so don&apos;t assume that the tasks will start/finish in order.</p>
 <h4 id="fn">fn</h4>
-<p>The function that performs the task&apos;s operations. Generally this takes the form of <code>gulp.src().pipe(someplugin())</code>.</p>
+<p>Type: <code>Function</code></p>
+<p>The function performs the task&apos;s main operations. Generally this takes the form of:</p>
+<pre><code class="lang-js">gulp.task(<span class="hljs-string">&apos;buildStuff&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-comment">// Do something that &quot;builds stuff&quot;</span>
+  <span class="hljs-keyword">var</span> stream = gulp.src(<span class="hljs-comment">/*some source path*/</span>)
+  .pipe(somePlugin())
+  .pipe(someOtherPlugin())
+  .pipe(gulp.dest(<span class="hljs-comment">/*some destination*/</span>));
+
+  <span class="hljs-keyword">return</span> stream;
+  });
+</code></pre>
 <h4 id="async-task-support">Async task support</h4>
 <p>Tasks can be made asynchronous if its <code>fn</code> does one of the following:</p>
 <h5 id="accept-a-callback">Accept a callback</h5>
@@ -883,9 +839,9 @@ gulp.task(<span class="hljs-string">&apos;two&apos;</span>, [<span class="hljs-s
 
 gulp.task(<span class="hljs-string">&apos;default&apos;</span>, [<span class="hljs-string">&apos;one&apos;</span>, <span class="hljs-string">&apos;two&apos;</span>]);
 </code></pre>
-<h3 id="gulp-watch-glob-opts-tasks-or-gulp-watch-glob-opts-cb">gulp.watch(glob [, opts], tasks) or gulp.watch(glob [, opts, cb])</h3>
+<h3 id="gulpwatchglob--opts-tasks-or-gulpwatchglob--opts-cb">gulp.watch(glob [, opts], tasks) or gulp.watch(glob [, opts, cb])</h3>
 <p>Watch files and do something when a file changes. This always returns an EventEmitter that emits <code>change</code> events.</p>
-<h3 id="gulp-watch-glob-opts-tasks">gulp.watch(glob[, opts], tasks)</h3>
+<h3 id="gulpwatchglob-opts-tasks">gulp.watch(glob[, opts], tasks)</h3>
 <h4 id="glob">glob</h4>
 <p>Type: <code>String</code> or <code>Array</code></p>
 <p>A single glob or array of globs that indicate which files to watch for changes.</p>
@@ -900,14 +856,14 @@ watcher.on(<span class="hljs-string">&apos;change&apos;</span>, <span class="hlj
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;File &apos;</span> + event.path + <span class="hljs-string">&apos; was &apos;</span> + event.type + <span class="hljs-string">&apos;, running tasks...&apos;</span>);
 });
 </code></pre>
-<h3 id="gulp-watch-glob-opts-cb">gulp.watch(glob[, opts, cb])</h3>
+<h3 id="gulpwatchglob-opts-cb">gulp.watch(glob[, opts, cb])</h3>
 <h4 id="glob">glob</h4>
 <p>Type: <code>String</code> or <code>Array</code></p>
 <p>A single glob or array of globs that indicate which files to watch for changes.</p>
 <h4 id="opts">opts</h4>
 <p>Type: <code>Object</code></p>
 <p>Options, that are passed to <a href="https://github.com/shama/gaze" target="_blank"><code>gaze</code></a>.</p>
-<h4 id="cb-event">cb(event)</h4>
+<h4 id="cbevent">cb(event)</h4>
 <p>Type: <code>Function</code></p>
 <p>Callback to be called on each change.</p>
 <pre><code class="lang-js">gulp.watch(<span class="hljs-string">&apos;js/**/*.js&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) </span>{
@@ -915,10 +871,10 @@ watcher.on(<span class="hljs-string">&apos;change&apos;</span>, <span class="hlj
 });
 </code></pre>
 <p>The callback will be passed an object, <code>event</code>, that describes the change:</p>
-<h5 id="event-type">event.type</h5>
+<h5 id="eventtype">event.type</h5>
 <p>Type: <code>String</code></p>
 <p>The type of change that occurred, either <code>added</code>, <code>changed</code> or <code>deleted</code>.</p>
-<h5 id="event-path">event.path</h5>
+<h5 id="eventpath">event.path</h5>
 <p>Type: <code>String</code></p>
 <p>The path to the file that triggered the event.</p>
 
@@ -943,17 +899,41 @@ watcher.on(<span class="hljs-string">&apos;change&apos;</span>, <span class="hlj
 <script src="gitbook/app.js"></script>
 
     
+    <script src="gitbook/plugins/gitbook-plugin-edit-link/plugin.js"></script>
+    
+
+    
     <script src="gitbook/plugins/gitbook-plugin-ga/plugin.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-github/plugin.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
     
 
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"fontSettings":{"theme":null,"family":"sans","size":2},"ga":{"token":"UA-36637973-3","configuration":"auto"},"sitemap":{"hostname":"http://gulpjs.org/"}};
+    var config = {"edit-link":{"base":"https://github.com/bipedd/gulp-docs/blob/master","label":"Edit This Page"},"ga":{"token":"UA-36637973-3","configuration":"auto"},"github":{"url":"https://github.com/bipedd/gulp-docs"},"sitemap":{"hostname":"http://gulpjs.org/"},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>
 
-        <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-36637973-3', 'auto');ga('send', 'pageview');</script>
+        
     </body>
     
 </html>

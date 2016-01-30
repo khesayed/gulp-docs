@@ -8,7 +8,7 @@
         <title>Writing a Plugin | Gulp Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.4.3">
+        <meta name="generator" content="GitBook 2.6.7">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -22,6 +22,14 @@
     
         
         <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
         
     
     
@@ -40,13 +48,16 @@
     <body>
         
         
-    <div class="book" data-level="4" data-basepath=".." data-revision="Thu Oct 15 2015 23:53:16 GMT+0800 (CST)">
+    <div class="book"
+        data-level="4"
+        data-chapter-title="Writing a Plugin"
+        data-filepath="writing-a-plugin/README.md"
+        data-basepath=".."
+        data-revision="Sat Jan 30 2016 15:20:15 GMT+0800 (CST)"
+        data-innerlanguage="">
     
 
 <div class="book-summary">
-    <div class="book-search" role="search">
-        <input type="text" placeholder="Type to search" class="form-control" />
-    </div>
     <nav role="navigation">
         <ul class="summary">
             
@@ -641,80 +652,7 @@
         <div class="body-inner">
             <div class="book-header" role="navigation">
     <!-- Actions Left -->
-    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
-    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
     
-    <div id="font-settings-wrapper" class="dropdown pull-left">
-        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
-        </a>
-        <div class="dropdown-menu font-settings">
-    <div class="dropdown-caret">
-        <span class="caret-outer"></span>
-        <span class="caret-inner"></span>
-    </div>
-
-    <div class="buttons">
-        <button type="button" id="reduce-font-size" class="button size-2">A</button>
-        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
-    </div>
-
-    <div class="buttons font-family-list">
-        <button type="button" data-font="0" class="button">Serif</button>
-        <button type="button" data-font="1" class="button">Sans</button>
-    </div>
-
-    <div class="buttons color-theme-list">
-        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
-        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
-        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
-    </div>
-</div>
-
-    </div>
-
-    <!-- Actions Right -->
-    
-    <div class="dropdown pull-right">
-        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
-        </a>
-        <div class="dropdown-menu font-settings dropdown-left">
-            <div class="dropdown-caret">
-                <span class="caret-outer"></span>
-                <span class="caret-inner"></span>
-            </div>
-            <div class="buttons">
-                <button type="button" data-sharing="twitter" class="button">
-                    Share on Twitter
-                </button>
-                <button type="button" data-sharing="google-plus" class="button">
-                    Share on Google
-                </button>
-                <button type="button" data-sharing="facebook" class="button">
-                    Share on Facebook
-                </button>
-                <button type="button" data-sharing="weibo" class="button">
-                    Share on Weibo
-                </button>
-                <button type="button" data-sharing="instapaper" class="button">
-                    Share on Instapaper
-                </button>
-            </div>
-        </div>
-    </div>
-    
-
-    
-    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
-    
-    
-    
-
 
     <!-- Title -->
     <h1>
@@ -742,16 +680,137 @@
 <p>A gulp plugin always returns a stream in <a href="http://nodejs.org/api/stream.html#stream_object_mode" target="_blank">object mode</a> that does the following:</p>
 <ol>
 <li>Takes in <a href="http://github.com/wearefractal/vinyl" target="_blank">vinyl File objects</a></li>
-<li>Outputs <a href="http://github.com/wearefractal/vinyl" target="_blank">vinyl File objects</a></li>
+<li>Outputs <a href="http://github.com/wearefractal/vinyl" target="_blank">vinyl File objects</a> (via <code>transform.push()</code> and/or the plugin&apos;s callback function) </li>
 </ol>
-<p>These are known as <a href="http://nodejs.org/api/stream.html#stream_class_stream_transform_1" target="_blank">transform streams</a> (also sometimes called through streams). Transform streams are streams that are readable and writable which manipulate objects as they&apos;re being passed through.</p>
+<p>These are known as <a href="http://nodejs.org/api/stream.html#stream_class_stream_transform_1" target="_blank">transform streams</a> 
+(also sometimes called through streams). 
+Transform streams are streams that are readable and writable; they manipulate objects as they&apos;re being passed through.</p>
+<p>All gulp plugins essentially boil down to this:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> Transform = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;transform&apos;</span>);
+
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-comment">// Monkey patch Transform or create your own subclass, </span>
+  <span class="hljs-comment">// implementing `_transform()` and optionally `_flush()`</span>
+  <span class="hljs-keyword">var</span> transformStream = <span class="hljs-keyword">new</span> Transform({objectMode: <span class="hljs-literal">true</span>});
+  <span class="hljs-comment">/**
+   * @param {Buffer|string} file
+   * @param {string=} encoding - ignored if file contains a Buffer
+   * @param {function(Error, object)} callback - Call this function (optionally with an 
+   *          error argument and data) when you are done processing the supplied chunk.
+   */</span>
+  transformStream._transform = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">file, encoding, callback</span>) </span>{
+    <span class="hljs-keyword">var</span> error = <span class="hljs-literal">null</span>, 
+        output = doSomethingWithTheFile(file);
+    callback(error, output);
+  });
+
+  <span class="hljs-keyword">return</span> transformStream;
+};
+</code></pre>
+<p>Many plugins use the <a href="https://github.com/rvagg/through2/" target="_blank">through2</a> module to simplify their code:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> through = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;through2&apos;</span>);    <span class="hljs-comment">// npm install --save through2</span>
+
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> through.obj(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">file, encoding, callback</span>) </span>{
+    callback(<span class="hljs-literal">null</span>, doSomethingWithTheFile(file));
+  });
+};
+</code></pre>
+<p>The stream returned from <code>through()</code> (and <code>this</code> within your transform function) is an instance of the <a href="https://github.com/iojs/readable-stream/blob/master/lib/_stream_transform.js" target="_blank">Transform</a>
+class, which extends <a href="https://github.com/iojs/readable-stream/blob/master/lib/_stream_duplex.js" target="_blank">Duplex</a>,
+<a href="https://github.com/iojs/readable-stream/blob/master/lib/_stream_readable.js" target="_blank">Readable</a>
+(and parasitically from Writable) and ultimately <a href="https://nodejs.org/api/stream.html" target="_blank">Stream</a>.<br>If you need to parse additional options, you can call the <code>through()</code> function directly:</p>
+<pre><code class="lang-js">  <span class="hljs-keyword">return</span> through({objectMode: <span class="hljs-literal">true</span> <span class="hljs-comment">/* other options... */</span>}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">file, encoding, callback</span>) </span>{ ...
+</code></pre>
+<p>Supported options include:</p>
+<ul>
+<li>highWaterMark (defaults to 16)</li>
+<li>defaultEncoding (defaults to &apos;utf8&apos;)</li>
+<li>encoding - &apos;utf8&apos;, &apos;base64&apos;, &apos;utf16le&apos;, &apos;ucs2&apos; etc.
+  If specified, a <a href="https://github.com/rvagg/string_decoder/blob/master/index.js" target="_blank">StringDecoder</a> <code>decoder</code> will be attached to the stream.</li>
+<li>readable {boolean}</li>
+<li>writable {boolean}</li>
+<li>allowHalfOpen {boolean} If set to false, then the stream will automatically end the readable side when the writable side ends and vice versa.</li>
+</ul>
 <h3 id="modifying-file-content">Modifying file content</h3>
+<p>The function parameter that you pass to <code>through.obj()</code> is a <a href="https://nodejs.org/api/stream.html#stream_transform_transform_chunk_encoding_callback" target="_blank">_transform</a>
+function which will operate on the input <code>file</code>.  You may also provide an optional <a href="https://nodejs.org/api/stream.html#stream_transform_flush_callback" target="_blank">_flush</a>
+function if you need to emit a bit more data at the end of the stream.</p>
+<p>From within your transform function call <code>this.push(file)</code> 0 or more times to pass along transformed/cloned files.<br>You don&apos;t need to call <code>this.push(file)</code> if you provide all output to the <code>callback()</code> function.</p>
+<p>Call the <code>callback</code> function only when the current file (stream/buffer) is completely consumed. 
+If an error is encountered, pass it as the first argument to the callback, otherwise set it to null. 
+If you have passed all output data to <code>this.push()</code> you can omit the second argument to the callback.</p>
+<p>Generally, a gulp plugin would update <code>file.contents</code> and then choose to either:</p>
+<ul>
+<li>call <code>callback(null, file)</code> 
+<em>or</em> </li>
+<li>make one call to <code>this.push(file)</code></li>
+</ul>
+<p>If a plugin creates multiple files from a single input file, it would make multiple calls to <code>this.push()</code> - eg:</p>
+<pre><code class="lang-js"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-comment">/**
+   * @this {Transform}
+   */</span>
+  <span class="hljs-keyword">var</span> transform = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">file, encoding, callback</span>) </span>{
+    <span class="hljs-keyword">var</span> files = splitFile(file);
+    <span class="hljs-keyword">this</span>.push(files[<span class="hljs-number">0</span>]);
+    <span class="hljs-keyword">this</span>.push(files[<span class="hljs-number">1</span>]);                              
+    callback();
+  }; 
+
+  <span class="hljs-keyword">return</span> through.obj(transform);
+};
+</code></pre>
+<p>The <a href="https://github.com/suisho/gulp-unzip/blob/master/index.js" target="_blank">gulp-unzip</a> plugin provides a good example of making
+multiple calls to <code>push()</code>.  It also uses a chunk transform stream with a <code>_flush()</code> function <em>within</em> the Vinyl transform function.</p>
 <p>Vinyl files can have 3 possible forms for the contents attribute:</p>
 <ul>
 <li><a href="dealing-with-streams.html">Streams</a></li>
 <li><a href="using-buffers.html">Buffers</a></li>
 <li>Empty (null) - Useful for things like rimraf, clean, where contents is not needed.</li>
 </ul>
+<p>A simple example showing how to detect &amp; handle each form is provided below, for a more detailed explanation of each
+approach follow the links above.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> PluginError = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp-util&apos;</span>).PluginError;
+
+<span class="hljs-comment">// consts</span>
+<span class="hljs-keyword">var</span> PLUGIN_NAME = <span class="hljs-string">&apos;gulp-example&apos;</span>;
+
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> through.obj(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">file, encoding, callback</span>) </span>{
+        <span class="hljs-keyword">if</span> (file.isNull()) {
+            <span class="hljs-comment">// nothing to do</span>
+            <span class="hljs-keyword">return</span> callback(<span class="hljs-literal">null</span>, file);
+        }
+
+        <span class="hljs-keyword">if</span> (file.isStream()) {
+            <span class="hljs-comment">// file.contents is a Stream - https://nodejs.org/api/stream.html</span>
+            <span class="hljs-keyword">this</span>.emit(<span class="hljs-string">&apos;error&apos;</span>, <span class="hljs-keyword">new</span> PluginError(PLUGIN_NAME, <span class="hljs-string">&apos;Streams not supported!&apos;</span>));
+
+            <span class="hljs-comment">// or, if you can handle Streams:</span>
+            <span class="hljs-comment">//file.contents = file.contents.pipe(...</span>
+            <span class="hljs-comment">//return callback(null, file);</span>
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (file.isBuffer()) {
+            <span class="hljs-comment">// file.contents is a Buffer - https://nodejs.org/api/buffer.html</span>
+            <span class="hljs-keyword">this</span>.emit(<span class="hljs-string">&apos;error&apos;</span>, <span class="hljs-keyword">new</span> PluginError(PLUGIN_NAME, <span class="hljs-string">&apos;Buffers not supported!&apos;</span>));
+
+            <span class="hljs-comment">// or, if you can handle Buffers:</span>
+            <span class="hljs-comment">//file.contents = ...</span>
+            <span class="hljs-comment">//return callback(null, file);</span>
+        }
+    });
+};
+</code></pre>
+<p>Note: When looking through the code of other gulp plugins (and the example above), you may notice that the transform functions will return the result of the callback:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">return</span> callback(<span class="hljs-literal">null</span>, file);
+</code></pre>
+<p>...don&apos;t be confused - gulp ignores any return value of your transform function.  The code above is simply a short-hand form of:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">if</span> (someCondition) {
+  callback(<span class="hljs-literal">null</span>, file);
+  <span class="hljs-keyword">return</span>;
+}
+<span class="hljs-comment">// further execution...</span>
+</code></pre>
 <h2 id="useful-resources">Useful resources</h2>
 <ul>
 <li><a href="https://github.com/wearefractal/gulp-util/#new-fileobj" target="_blank">File object</a></li>
@@ -795,17 +854,41 @@
 <script src="../gitbook/app.js"></script>
 
     
+    <script src="../gitbook/plugins/gitbook-plugin-edit-link/plugin.js"></script>
+    
+
+    
     <script src="../gitbook/plugins/gitbook-plugin-ga/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-github/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
     
 
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"fontSettings":{"theme":null,"family":"sans","size":2},"ga":{"token":"UA-36637973-3","configuration":"auto"},"sitemap":{"hostname":"http://gulpjs.org/"}};
+    var config = {"edit-link":{"base":"https://github.com/bipedd/gulp-docs/blob/master","label":"Edit This Page"},"ga":{"token":"UA-36637973-3","configuration":"auto"},"github":{"url":"https://github.com/bipedd/gulp-docs"},"sitemap":{"hostname":"http://gulpjs.org/"},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>
 
-        <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-36637973-3', 'auto');ga('send', 'pageview');</script>
+        
     </body>
     
 </html>
