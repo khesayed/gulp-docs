@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Output both a minified and non-minified version | Gulp Documentation</title>
+        <title>Browserify + Globs (multiple destination) | Gulp Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.4.3">
@@ -33,10 +33,10 @@
         
     
     
-    <link rel="next" href="../recipes/templating-with-swig-and-yaml-front-matter.html" />
+    <link rel="next" href="../recipes/minified-and-non-minified.html" />
     
     
-    <link rel="prev" href="../recipes/browserify-multiple-destination.html" />
+    <link rel="prev" href="../recipes/browserify-with-globs.html" />
     
 
         
@@ -44,7 +44,7 @@
     <body>
         
         
-    <div class="book" data-level="6.23" data-basepath=".." data-revision="Thu Jun 23 2016 16:59:29 GMT+0800 (CST)">
+    <div class="book" data-level="6.22" data-basepath=".." data-revision="Thu Jun 23 2016 16:59:29 GMT+0800 (CST)">
     
 
 <div class="book-summary">
@@ -562,7 +562,7 @@
             
         </li>
     
-        <li class="chapter " data-level="6.22" data-path="recipes/browserify-multiple-destination.html">
+        <li class="chapter active" data-level="6.22" data-path="recipes/browserify-multiple-destination.html">
             
                 
                     <a href="../recipes/browserify-multiple-destination.html">
@@ -577,7 +577,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="6.23" data-path="recipes/minified-and-non-minified.html">
+        <li class="chapter " data-level="6.23" data-path="recipes/minified-and-non-minified.html">
             
                 
                     <a href="../recipes/minified-and-non-minified.html">
@@ -787,24 +787,44 @@
                 
                     <section class="normal" id="section-">
                     
-                        <a id="edit-link" href="https://github.com/bipedd/gulp-docs/blob/master/recipes/minified-and-non-minified.md" class="btn fa fa-edit pull-left">&nbsp;&nbsp; </a><h1 id="output-both-a-minified-and-non-minified-version">Output both a minified and non-minified version</h1>
-<p>Outputting both a minified and non-minified version of your combined JavaScript files can be achieved by using <code>gulp-rename</code> and piping to <code>dest</code> twice (once before minifying and once after minifying):</p>
-<pre><code class="lang-js"><span class="hljs-pi">&apos;use strict&apos;</span>;
-
-<span class="hljs-keyword">var</span> gulp = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp&apos;</span>);
-<span class="hljs-keyword">var</span> rename = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp-rename&apos;</span>);
+                        <a id="edit-link" href="https://github.com/bipedd/gulp-docs/blob/master/recipes/browserify-multiple-destination.md" class="btn fa fa-edit pull-left">&nbsp;&nbsp; </a><h1 id="browserify-globs-multiple-destination">Browserify + Globs (multiple destination)</h1>
+<p>This example shows how to set up a task of bundling multiple entry points into multiple destinations using browserify.</p>
+<p>The below <code>js</code> task bundles all the <code>.js</code> files under <code>src/</code> as entry points and writes the results under <code>dest/</code>.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> gulp = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp&apos;</span>);
+<span class="hljs-keyword">var</span> browserify = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;browserify&apos;</span>);
+<span class="hljs-keyword">var</span> gutil = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp-util&apos;</span>);
+<span class="hljs-keyword">var</span> tap = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp-tap&apos;</span>);
+<span class="hljs-keyword">var</span> buffer = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp-buffer&apos;</span>);
+<span class="hljs-keyword">var</span> sourcemaps = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp-sourcemaps&apos;</span>);
 <span class="hljs-keyword">var</span> uglify = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp-uglify&apos;</span>);
 
-<span class="hljs-keyword">var</span> DEST = <span class="hljs-string">&apos;build/&apos;</span>;
+gulp.task(<span class="hljs-string">&apos;js&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
 
-gulp.task(<span class="hljs-string">&apos;default&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">return</span> gulp.src(<span class="hljs-string">&apos;foo.js&apos;</span>)
-    <span class="hljs-comment">// This will output the non-minified version</span>
-    .pipe(gulp.dest(DEST))
-    <span class="hljs-comment">// This will minify and rename to foo.min.js</span>
+  <span class="hljs-keyword">return</span> gulp.src(<span class="hljs-string">&apos;src/**/*.js&apos;</span>, {read: <span class="hljs-literal">false</span>}) <span class="hljs-comment">// no need of reading file because browserify does.</span>
+
+    <span class="hljs-comment">// transform file objects using gulp-tap plugin</span>
+    .pipe(tap(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">file</span>) </span>{
+
+      gutil.log(<span class="hljs-string">&apos;bundling &apos;</span> + file.path);
+
+      <span class="hljs-comment">// replace file contents with browserify&apos;s bundle stream</span>
+      file.contents = browserify(file.path, {debug: <span class="hljs-literal">true</span>}).bundle();
+
+    }))
+
+    <span class="hljs-comment">// transform streaming contents into buffer contents (because gulp-sourcemaps does not support streaming contents)</span>
+    .pipe(buffer())
+
+    <span class="hljs-comment">// load and init sourcemaps</span>
+    .pipe(sourcemaps.init({loadMaps: <span class="hljs-literal">true</span>}))
+
     .pipe(uglify())
-    .pipe(rename({ extname: <span class="hljs-string">&apos;.min.js&apos;</span> }))
-    .pipe(gulp.dest(DEST));
+
+    <span class="hljs-comment">// write sourcemaps</span>
+    .pipe(sourcemaps.write(<span class="hljs-string">&apos;./&apos;</span>))
+
+    .pipe(gulp.dest(<span class="hljs-string">&apos;dest&apos;</span>));
+
 });
 </code></pre>
 
@@ -817,10 +837,10 @@ gulp.task(<span class="hljs-string">&apos;default&apos;</span>, <span class="hlj
         </div>
 
         
-        <a href="../recipes/browserify-multiple-destination.html" class="navigation navigation-prev " aria-label="Previous page: Browserify + Globs (multiple destination)"><i class="fa fa-angle-left"></i></a>
+        <a href="../recipes/browserify-with-globs.html" class="navigation navigation-prev " aria-label="Previous page: Browserify + Globs"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../recipes/templating-with-swig-and-yaml-front-matter.html" class="navigation navigation-next " aria-label="Next page: Templating with Swig and YAML front-matter"><i class="fa fa-angle-right"></i></a>
+        <a href="../recipes/minified-and-non-minified.html" class="navigation navigation-next " aria-label="Next page: Output both a minified and non-minified version"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

@@ -44,7 +44,7 @@
     <body>
         
         
-    <div class="book" data-level="2" data-basepath="." data-revision="Mon Mar 21 2016 20:51:09 GMT+0800 (CST)">
+    <div class="book" data-level="2" data-basepath="." data-revision="Thu Jun 23 2016 16:59:29 GMT+0800 (CST)">
     
 
 <div class="book-summary">
@@ -562,14 +562,29 @@
             
         </li>
     
-        <li class="chapter " data-level="6.22" data-path="recipes/minified-and-non-minified.html">
+        <li class="chapter " data-level="6.22" data-path="recipes/browserify-multiple-destination.html">
+            
+                
+                    <a href="./recipes/browserify-multiple-destination.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.22.</b>
+                        
+                        Browserify + Globs (multiple destination)
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.23" data-path="recipes/minified-and-non-minified.html">
             
                 
                     <a href="./recipes/minified-and-non-minified.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>6.22.</b>
+                            <b>6.23.</b>
                         
                         Output both a minified and non-minified version
                     </a>
@@ -577,14 +592,14 @@
             
         </li>
     
-        <li class="chapter " data-level="6.23" data-path="recipes/templating-with-swig-and-yaml-front-matter.html">
+        <li class="chapter " data-level="6.24" data-path="recipes/templating-with-swig-and-yaml-front-matter.html">
             
                 
                     <a href="./recipes/templating-with-swig-and-yaml-front-matter.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>6.23.</b>
+                            <b>6.24.</b>
                         
                         Templating with Swig and YAML front-matter
                     </a>
@@ -592,14 +607,14 @@
             
         </li>
     
-        <li class="chapter " data-level="6.24" data-path="recipes/handling-the-delete-event-on-watch.html">
+        <li class="chapter " data-level="6.25" data-path="recipes/handling-the-delete-event-on-watch.html">
             
                 
                     <a href="./recipes/handling-the-delete-event-on-watch.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>6.24.</b>
+                            <b>6.25.</b>
                         
                         Handling the Delete Event on Watch
                     </a>
@@ -607,16 +622,61 @@
             
         </li>
     
-        <li class="chapter " data-level="6.25" data-path="recipes/maintain-directory-structure-while-globbing.html">
+        <li class="chapter " data-level="6.26" data-path="recipes/maintain-directory-structure-while-globbing.html">
             
                 
                     <a href="./recipes/maintain-directory-structure-while-globbing.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>6.25.</b>
+                            <b>6.26.</b>
                         
                         Maintain Directory Structure while Globbing
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.27" data-path="recipes/run-grunt-tasks-from-gulp.html">
+            
+                
+                    <a href="./recipes/run-grunt-tasks-from-gulp.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.27.</b>
+                        
+                        Run Grunt Tasks from Gulp
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.28" data-path="recipes/exports-as-tasks.html">
+            
+                
+                    <a href="./recipes/exports-as-tasks.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.28.</b>
+                        
+                        Exports as tasks
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.29" data-path="recipes/rollup-with-rollup-stream.html">
+            
+                
+                    <a href="./recipes/rollup-with-rollup-stream.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.29.</b>
+                        
+                        Rollup with rollup-stream
                     </a>
             
             
@@ -729,14 +789,14 @@
                     
                         <a id="edit-link" href="https://github.com/bipedd/gulp-docs/blob/master/API.md" class="btn fa fa-edit pull-left">&nbsp;&nbsp; </a><h2 id="gulp-api-docs">gulp API docs</h2>
 <p>Jump to:
-  <a href="#gulpsrcglobs-options">gulp.src</a> |
-  <a href="#gulpdestpath-options">gulp.dest</a> |
-  <a href="#gulptaskname--deps-fn">gulp.task</a> |
-  <a href="#gulpwatchglob--opts-tasks-or-gulpwatchglob--opts-cb">gulp.watch</a></p>
+  <a href="#gulp-src-globs-options">gulp.src</a> |
+  <a href="#gulp-dest-path-options">gulp.dest</a> |
+  <a href="#gulp-task-name-deps-fn">gulp.task</a> |
+  <a href="#gulp-watch-glob-opts-cb">gulp.watch</a></p>
 <h3 id="gulp-src-globs-options">gulp.src(globs[, options])</h3>
-<p>Emits files matching provided glob or an array of globs. 
-Returns a <a href="http://nodejs.org/api/stream.html" target="_blank">stream</a> of <a href="https://github.com/wearefractal/vinyl-fs" target="_blank">Vinyl files</a> 
-that can be <a href="http://nodejs.org/api/stream.html#stream_readable_pipe_destination_options" target="_blank">piped</a> 
+<p>Emits files matching provided glob or an array of globs.
+Returns a <a href="http://nodejs.org/api/stream.html" target="_blank">stream</a> of <a href="https://github.com/gulpjs/vinyl-fs" target="_blank">Vinyl files</a>
+that can be <a href="http://nodejs.org/api/stream.html#stream_readable_pipe_destination_options" target="_blank">piped</a>
 to plugins.</p>
 <pre><code class="lang-javascript">gulp.src(<span class="hljs-string">&apos;client/templates/*.jade&apos;</span>)
   .pipe(jade())
@@ -755,8 +815,8 @@ to plugins.</p>
 <pre><code>gulp.src([&apos;client/*.js&apos;, &apos;!client/b*.js&apos;, &apos;client/bad.js&apos;])
 </code></pre><h4 id="options">options</h4>
 <p>Type: <code>Object</code></p>
-<p>Options to pass to <a href="https://github.com/isaacs/node-glob" target="_blank">node-glob</a> through <a href="https://github.com/wearefractal/glob-stream" target="_blank">glob-stream</a>.</p>
-<p>gulp supports all <a href="https://github.com/isaacs/node-glob#options" target="_blank">options supported by node-glob</a> and <a href="https://github.com/wearefractal/glob-stream" target="_blank">glob-stream</a> except <code>ignore</code> and adds the following options.</p>
+<p>Options to pass to <a href="https://github.com/isaacs/node-glob" target="_blank">node-glob</a> through <a href="https://github.com/gulpjs/glob-stream" target="_blank">glob-stream</a>.</p>
+<p>gulp supports all <a href="https://github.com/isaacs/node-glob#options" target="_blank">options supported by node-glob</a> and <a href="https://github.com/gulpjs/glob-stream" target="_blank">glob-stream</a> except <code>ignore</code> and adds the following options.</p>
 <h5 id="options-buffer">options.buffer</h5>
 <p>Type: <code>Boolean</code>
 Default: <code>true</code></p>
@@ -786,11 +846,11 @@ gulp.src(<span class="hljs-string">&apos;client/js/**/*.js&apos;</span>, { base:
   .pipe(gulp.dest(<span class="hljs-string">&apos;./build/minified_templates&apos;</span>));
 </code></pre>
 <p>The write path is calculated by appending the file relative path to the given
-destination directory. In turn, relative paths are calculated against the file base. 
+destination directory. In turn, relative paths are calculated against the file base.
 See <code>gulp.src</code> above for more info.</p>
 <h4 id="path">path</h4>
 <p>Type: <code>String</code> or <code>Function</code></p>
-<p>The path (output folder) to write files to. Or a function that returns it, the function will be provided a <a href="https://github.com/wearefractal/vinyl" target="_blank">vinyl File instance</a>.</p>
+<p>The path (output folder) to write files to. Or a function that returns it, the function will be provided a <a href="https://github.com/gulpjs/vinyl" target="_blank">vinyl File instance</a>.</p>
 <h4 id="options">options</h4>
 <p>Type: <code>Object</code></p>
 <h5 id="options-cwd">options.cwd</h5>
@@ -801,7 +861,7 @@ Default: <code>process.cwd()</code></p>
 <p>Type: <code>String</code>
 Default: <code>0777</code></p>
 <p>Octal permission string specifying mode for any folders that need to be created for output folder.</p>
-<h3 id="gulp-task-name-deps-fn">gulp.task(name [, deps, fn])</h3>
+<h3 id="gulp-task-name-deps-fn">gulp.task(name [, deps] [, fn])</h3>
 <p>Define a task using <a href="https://github.com/robrich/orchestrator" target="_blank">Orchestrator</a>.</p>
 <pre><code class="lang-js">gulp.task(<span class="hljs-string">&apos;somename&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-comment">// Do stuff</span>
@@ -845,6 +905,17 @@ gulp.task(<span class="hljs-string">&apos;jekyll&apos;</span>, <span class="hljs
   exec(<span class="hljs-string">&apos;jekyll build&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>{
     <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> cb(err); <span class="hljs-comment">// return error</span>
     cb(); <span class="hljs-comment">// finished task</span>
+  });
+});
+
+<span class="hljs-comment">// use an async result in a pipe</span>
+gulp.task(<span class="hljs-string">&apos;somename&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">cb</span>) </span>{
+  getFilesAsync(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, res</span>) </span>{
+    <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">return</span> cb(err);
+    <span class="hljs-keyword">var</span> stream = gulp.src(res)
+      .pipe(minify())
+      .pipe(gulp.dest(<span class="hljs-string">&apos;build&apos;</span>))
+      .on(<span class="hljs-string">&apos;end&apos;</span>, cb);
   });
 });
 </code></pre>
@@ -933,7 +1004,7 @@ watcher.on(<span class="hljs-string">&apos;change&apos;</span>, <span class="hlj
 <p>The callback will be passed an object, <code>event</code>, that describes the change:</p>
 <h5 id="event-type">event.type</h5>
 <p>Type: <code>String</code></p>
-<p>The type of change that occurred, either <code>added</code>, <code>changed</code> or <code>deleted</code>.</p>
+<p>The type of change that occurred, either <code>added</code>, <code>changed</code>, <code>deleted</code> or <code>renamed</code>.</p>
 <h5 id="event-path">event.path</h5>
 <p>Type: <code>String</code></p>
 <p>The path to the file that triggered the event.</p>

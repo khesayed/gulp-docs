@@ -33,7 +33,7 @@
         
     
     
-    <link rel="next" href="../recipes/minified-and-non-minified.html" />
+    <link rel="next" href="../recipes/browserify-multiple-destination.html" />
     
     
     <link rel="prev" href="../recipes/browserify-uglify-sourcemap.html" />
@@ -44,7 +44,7 @@
     <body>
         
         
-    <div class="book" data-level="6.21" data-basepath=".." data-revision="Mon Mar 21 2016 20:51:09 GMT+0800 (CST)">
+    <div class="book" data-level="6.21" data-basepath=".." data-revision="Thu Jun 23 2016 16:59:29 GMT+0800 (CST)">
     
 
 <div class="book-summary">
@@ -562,14 +562,29 @@
             
         </li>
     
-        <li class="chapter " data-level="6.22" data-path="recipes/minified-and-non-minified.html">
+        <li class="chapter " data-level="6.22" data-path="recipes/browserify-multiple-destination.html">
+            
+                
+                    <a href="../recipes/browserify-multiple-destination.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.22.</b>
+                        
+                        Browserify + Globs (multiple destination)
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.23" data-path="recipes/minified-and-non-minified.html">
             
                 
                     <a href="../recipes/minified-and-non-minified.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>6.22.</b>
+                            <b>6.23.</b>
                         
                         Output both a minified and non-minified version
                     </a>
@@ -577,14 +592,14 @@
             
         </li>
     
-        <li class="chapter " data-level="6.23" data-path="recipes/templating-with-swig-and-yaml-front-matter.html">
+        <li class="chapter " data-level="6.24" data-path="recipes/templating-with-swig-and-yaml-front-matter.html">
             
                 
                     <a href="../recipes/templating-with-swig-and-yaml-front-matter.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>6.23.</b>
+                            <b>6.24.</b>
                         
                         Templating with Swig and YAML front-matter
                     </a>
@@ -592,14 +607,14 @@
             
         </li>
     
-        <li class="chapter " data-level="6.24" data-path="recipes/handling-the-delete-event-on-watch.html">
+        <li class="chapter " data-level="6.25" data-path="recipes/handling-the-delete-event-on-watch.html">
             
                 
                     <a href="../recipes/handling-the-delete-event-on-watch.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>6.24.</b>
+                            <b>6.25.</b>
                         
                         Handling the Delete Event on Watch
                     </a>
@@ -607,16 +622,61 @@
             
         </li>
     
-        <li class="chapter " data-level="6.25" data-path="recipes/maintain-directory-structure-while-globbing.html">
+        <li class="chapter " data-level="6.26" data-path="recipes/maintain-directory-structure-while-globbing.html">
             
                 
                     <a href="../recipes/maintain-directory-structure-while-globbing.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>6.25.</b>
+                            <b>6.26.</b>
                         
                         Maintain Directory Structure while Globbing
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.27" data-path="recipes/run-grunt-tasks-from-gulp.html">
+            
+                
+                    <a href="../recipes/run-grunt-tasks-from-gulp.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.27.</b>
+                        
+                        Run Grunt Tasks from Gulp
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.28" data-path="recipes/exports-as-tasks.html">
+            
+                
+                    <a href="../recipes/exports-as-tasks.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.28.</b>
+                        
+                        Exports as tasks
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.29" data-path="recipes/rollup-with-rollup-stream.html">
+            
+                
+                    <a href="../recipes/rollup-with-rollup-stream.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.29.</b>
+                        
+                        Rollup with rollup-stream
                     </a>
             
             
@@ -728,7 +788,7 @@
                     <section class="normal" id="section-">
                     
                         <a id="edit-link" href="https://github.com/bipedd/gulp-docs/blob/master/recipes/browserify-with-globs.md" class="btn fa fa-edit pull-left">&nbsp;&nbsp; </a><h1 id="browserify-globs">Browserify + Globs</h1>
-<p><a href="https://github.com/gulpjs/gulp/blob/master/docs/recipes/browserify-uglify-sourcemap.md" target="_blank">Browserify + Uglify2</a> shows how to setup a basic gulp task to bundle a JavaScript file with it&apos;s dependencies, and minify the bundle with UglifyJS while preserving source maps.
+<p><a href="https://github.com/gulpjs/gulp/blob/master/docs/recipes/browserify-uglify-sourcemap.md" target="_blank">Browserify + Uglify2</a> shows how to setup a basic gulp task to bundle a JavaScript file with its dependencies, and minify the bundle with UglifyJS while preserving source maps.
 It does not, however, show how one may use gulp and Browserify with multiple entry files.</p>
 <p>See also: the <a href="https://github.com/gulpjs/gulp/blob/master/docs/recipes/combining-streams-to-handle-errors.md" target="_blank">Combining Streams to Handle Errors</a> recipe for handling errors with Browserify or UglifyJS in your stream.</p>
 <pre><code class="lang-javascript"><span class="hljs-pi">&apos;use strict&apos;</span>;
@@ -797,7 +857,7 @@ gulp.task(<span class="hljs-string">&apos;javascript&apos;</span>, <span class="
         <a href="../recipes/browserify-uglify-sourcemap.html" class="navigation navigation-prev " aria-label="Previous page: Browserify + Uglify with sourcemaps"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../recipes/minified-and-non-minified.html" class="navigation navigation-next " aria-label="Next page: Output both a minified and non-minified version"><i class="fa fa-angle-right"></i></a>
+        <a href="../recipes/browserify-multiple-destination.html" class="navigation navigation-next " aria-label="Next page: Browserify + Globs (multiple destination)"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

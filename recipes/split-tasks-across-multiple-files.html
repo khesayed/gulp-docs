@@ -44,7 +44,7 @@
     <body>
         
         
-    <div class="book" data-level="6.16" data-basepath=".." data-revision="Mon Mar 21 2016 20:51:09 GMT+0800 (CST)">
+    <div class="book" data-level="6.16" data-basepath=".." data-revision="Thu Jun 23 2016 16:59:29 GMT+0800 (CST)">
     
 
 <div class="book-summary">
@@ -562,14 +562,29 @@
             
         </li>
     
-        <li class="chapter " data-level="6.22" data-path="recipes/minified-and-non-minified.html">
+        <li class="chapter " data-level="6.22" data-path="recipes/browserify-multiple-destination.html">
+            
+                
+                    <a href="../recipes/browserify-multiple-destination.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.22.</b>
+                        
+                        Browserify + Globs (multiple destination)
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.23" data-path="recipes/minified-and-non-minified.html">
             
                 
                     <a href="../recipes/minified-and-non-minified.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>6.22.</b>
+                            <b>6.23.</b>
                         
                         Output both a minified and non-minified version
                     </a>
@@ -577,14 +592,14 @@
             
         </li>
     
-        <li class="chapter " data-level="6.23" data-path="recipes/templating-with-swig-and-yaml-front-matter.html">
+        <li class="chapter " data-level="6.24" data-path="recipes/templating-with-swig-and-yaml-front-matter.html">
             
                 
                     <a href="../recipes/templating-with-swig-and-yaml-front-matter.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>6.23.</b>
+                            <b>6.24.</b>
                         
                         Templating with Swig and YAML front-matter
                     </a>
@@ -592,14 +607,14 @@
             
         </li>
     
-        <li class="chapter " data-level="6.24" data-path="recipes/handling-the-delete-event-on-watch.html">
+        <li class="chapter " data-level="6.25" data-path="recipes/handling-the-delete-event-on-watch.html">
             
                 
                     <a href="../recipes/handling-the-delete-event-on-watch.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>6.24.</b>
+                            <b>6.25.</b>
                         
                         Handling the Delete Event on Watch
                     </a>
@@ -607,16 +622,61 @@
             
         </li>
     
-        <li class="chapter " data-level="6.25" data-path="recipes/maintain-directory-structure-while-globbing.html">
+        <li class="chapter " data-level="6.26" data-path="recipes/maintain-directory-structure-while-globbing.html">
             
                 
                     <a href="../recipes/maintain-directory-structure-while-globbing.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>6.25.</b>
+                            <b>6.26.</b>
                         
                         Maintain Directory Structure while Globbing
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.27" data-path="recipes/run-grunt-tasks-from-gulp.html">
+            
+                
+                    <a href="../recipes/run-grunt-tasks-from-gulp.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.27.</b>
+                        
+                        Run Grunt Tasks from Gulp
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.28" data-path="recipes/exports-as-tasks.html">
+            
+                
+                    <a href="../recipes/exports-as-tasks.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.28.</b>
+                        
+                        Exports as tasks
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.29" data-path="recipes/rollup-with-rollup-stream.html">
+            
+                
+                    <a href="../recipes/rollup-with-rollup-stream.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.29.</b>
+                        
+                        Rollup with rollup-stream
                     </a>
             
             
@@ -728,9 +788,18 @@
                     <section class="normal" id="section-">
                     
                         <a id="edit-link" href="https://github.com/bipedd/gulp-docs/blob/master/recipes/split-tasks-across-multiple-files.md" class="btn fa fa-edit pull-left">&nbsp;&nbsp; </a><h1 id="split-tasks-across-multiple-files">Split tasks across multiple files</h1>
-<p>If your <code>gulpfile.js</code> is starting to grow too large, you can split the tasks
-into separate files by using the <a href="https://github.com/aseemk/requireDir" target="_blank">require-dir</a>
-module.</p>
+<p>If your <code>gulpfile.js</code> is starting to grow too large, you can split
+the tasks into separate files using one of the methods below.</p>
+<blockquote>
+<p>Be advised, that this approach is <a href="https://github.com/gulpjs/gulp/pull/1554#issuecomment-202614391" target="_blank">considered deprecated</a>
+and could lead to problems when migrating to the <code>gulp 4</code>.</p>
+</blockquote>
+<h2 id="using-gulp-require-tasks">Using <code>gulp-require-tasks</code></h2>
+<p>You can use the <a href="https://github.com/betsol/gulp-require-tasks" target="_blank">gulp-require-tasks</a>
+module to automatically load all your tasks from the individual files.</p>
+<p>Please see the <a href="https://github.com/betsol/gulp-require-tasks" target="_blank">module&apos;s README</a> for up-to-date instructions.</p>
+<h2 id="using-require-dir">Using <code>require-dir</code></h2>
+<p>You can also use the <a href="https://github.com/aseemk/requireDir" target="_blank">require-dir</a> module to load your tasks manually.</p>
 <p>Imagine the following file structure:</p>
 <pre><code>gulpfile.js
 tasks/

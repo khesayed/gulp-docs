@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Output both a minified and non-minified version | Gulp Documentation</title>
+        <title>Run Grunt Tasks from Gulp | Gulp Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.4.3">
@@ -33,10 +33,10 @@
         
     
     
-    <link rel="next" href="../recipes/templating-with-swig-and-yaml-front-matter.html" />
+    <link rel="next" href="../recipes/exports-as-tasks.html" />
     
     
-    <link rel="prev" href="../recipes/browserify-multiple-destination.html" />
+    <link rel="prev" href="../recipes/maintain-directory-structure-while-globbing.html" />
     
 
         
@@ -44,7 +44,7 @@
     <body>
         
         
-    <div class="book" data-level="6.23" data-basepath=".." data-revision="Thu Jun 23 2016 16:59:29 GMT+0800 (CST)">
+    <div class="book" data-level="6.27" data-basepath=".." data-revision="Thu Jun 23 2016 16:59:29 GMT+0800 (CST)">
     
 
 <div class="book-summary">
@@ -577,7 +577,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="6.23" data-path="recipes/minified-and-non-minified.html">
+        <li class="chapter " data-level="6.23" data-path="recipes/minified-and-non-minified.html">
             
                 
                     <a href="../recipes/minified-and-non-minified.html">
@@ -637,7 +637,7 @@
             
         </li>
     
-        <li class="chapter " data-level="6.27" data-path="recipes/run-grunt-tasks-from-gulp.html">
+        <li class="chapter active" data-level="6.27" data-path="recipes/run-grunt-tasks-from-gulp.html">
             
                 
                     <a href="../recipes/run-grunt-tasks-from-gulp.html">
@@ -787,26 +787,44 @@
                 
                     <section class="normal" id="section-">
                     
-                        <a id="edit-link" href="https://github.com/bipedd/gulp-docs/blob/master/recipes/minified-and-non-minified.md" class="btn fa fa-edit pull-left">&nbsp;&nbsp; </a><h1 id="output-both-a-minified-and-non-minified-version">Output both a minified and non-minified version</h1>
-<p>Outputting both a minified and non-minified version of your combined JavaScript files can be achieved by using <code>gulp-rename</code> and piping to <code>dest</code> twice (once before minifying and once after minifying):</p>
-<pre><code class="lang-js"><span class="hljs-pi">&apos;use strict&apos;</span>;
+                        <a id="edit-link" href="https://github.com/bipedd/gulp-docs/blob/master/recipes/run-grunt-tasks-from-gulp.md" class="btn fa fa-edit pull-left">&nbsp;&nbsp; </a><h1 id="run-grunt-tasks-from-gulp">Run Grunt Tasks from Gulp</h1>
+<p>It is possible to run Grunt tasks / Grunt plugins from within Gulp. This can be useful during a gradual migration from Grunt to Gulp or if there&apos;s a specific plugin that you need. With the described approach no Grunt CLI and no Gruntfile is required.</p>
+<p><strong>This approach requires Grunt &gt;=1.0.0</strong></p>
+<p>very simple example <code>gulpfile.js</code>:</p>
+<pre><code class="lang-js"><span class="hljs-comment">// npm install gulp grunt grunt-contrib-copy --save-dev</span>
 
 <span class="hljs-keyword">var</span> gulp = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp&apos;</span>);
-<span class="hljs-keyword">var</span> rename = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp-rename&apos;</span>);
-<span class="hljs-keyword">var</span> uglify = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp-uglify&apos;</span>);
+<span class="hljs-keyword">var</span> grunt = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;grunt&apos;</span>);
 
-<span class="hljs-keyword">var</span> DEST = <span class="hljs-string">&apos;build/&apos;</span>;
+grunt.initConfig({
+    copy: {
+        main: {
+            src: <span class="hljs-string">&apos;src/*&apos;</span>,
+            dest: <span class="hljs-string">&apos;dest/&apos;</span>
+        }
+    }
+});
+grunt.loadNpmTasks(<span class="hljs-string">&apos;grunt-contrib-copy&apos;</span>);
 
-gulp.task(<span class="hljs-string">&apos;default&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">return</span> gulp.src(<span class="hljs-string">&apos;foo.js&apos;</span>)
-    <span class="hljs-comment">// This will output the non-minified version</span>
-    .pipe(gulp.dest(DEST))
-    <span class="hljs-comment">// This will minify and rename to foo.min.js</span>
-    .pipe(uglify())
-    .pipe(rename({ extname: <span class="hljs-string">&apos;.min.js&apos;</span> }))
-    .pipe(gulp.dest(DEST));
+gulp.task(<span class="hljs-string">&apos;copy&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">done</span>) </span>{
+    grunt.tasks(
+        [<span class="hljs-string">&apos;copy:main&apos;</span>],    <span class="hljs-comment">//you can add more grunt tasks in this array</span>
+        {gruntfile: <span class="hljs-literal">false</span>}, <span class="hljs-comment">//don&apos;t look for a Gruntfile - there is none. :-)</span>
+        <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{done();}
+    );
 });
 </code></pre>
+<p>Now start the task with: 
+<code>gulp copy</code></p>
+<p>With the aforementioned approach the grunt tasks get registered within gulp&apos;s task system. <strong>Keep in mind grunt tasks are usually blocking (unlike gulp), therefore no other task (not even a gulp task) can run until a grunt task is completed.</strong></p>
+<h3 id="a-few-words-on-alternatives">A few words on alternatives</h3>
+<p>There&apos;s a <em>gulpfriendly</em> node module <code>gulp-grunt</code> <a href="https://www.npmjs.org/package/gulp-grunt" target="_blank">available</a> which takes a different approach. It spawns child processes and within them the grunt tasks are executed. The way it works implies some limitations though:</p>
+<ul>
+<li>It is at the moment not possible to pass options / cli args etc. to the grunt tasks via <code>gulp-grunt</code></li>
+<li>All grunt tasks have to be defined in a separate Gruntfile</li>
+<li>You need to have the Grunt CLI installed</li>
+<li>The output of some grunt tasks gets malformatted (.i.e. color coding).</li>
+</ul>
 
                     
                     </section>
@@ -817,10 +835,10 @@ gulp.task(<span class="hljs-string">&apos;default&apos;</span>, <span class="hlj
         </div>
 
         
-        <a href="../recipes/browserify-multiple-destination.html" class="navigation navigation-prev " aria-label="Previous page: Browserify + Globs (multiple destination)"><i class="fa fa-angle-left"></i></a>
+        <a href="../recipes/maintain-directory-structure-while-globbing.html" class="navigation navigation-prev " aria-label="Previous page: Maintain Directory Structure while Globbing"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../recipes/templating-with-swig-and-yaml-front-matter.html" class="navigation navigation-next " aria-label="Next page: Templating with Swig and YAML front-matter"><i class="fa fa-angle-right"></i></a>
+        <a href="../recipes/exports-as-tasks.html" class="navigation navigation-next " aria-label="Next page: Exports as tasks"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

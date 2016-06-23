@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Output both a minified and non-minified version | Gulp Documentation</title>
+        <title>Rollup with rollup-stream | Gulp Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.4.3">
@@ -33,10 +33,8 @@
         
     
     
-    <link rel="next" href="../recipes/templating-with-swig-and-yaml-front-matter.html" />
     
-    
-    <link rel="prev" href="../recipes/browserify-multiple-destination.html" />
+    <link rel="prev" href="../recipes/exports-as-tasks.html" />
     
 
         
@@ -44,7 +42,7 @@
     <body>
         
         
-    <div class="book" data-level="6.23" data-basepath=".." data-revision="Thu Jun 23 2016 16:59:29 GMT+0800 (CST)">
+    <div class="book" data-level="6.29" data-basepath=".." data-revision="Thu Jun 23 2016 16:59:29 GMT+0800 (CST)">
     
 
 <div class="book-summary">
@@ -577,7 +575,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="6.23" data-path="recipes/minified-and-non-minified.html">
+        <li class="chapter " data-level="6.23" data-path="recipes/minified-and-non-minified.html">
             
                 
                     <a href="../recipes/minified-and-non-minified.html">
@@ -667,7 +665,7 @@
             
         </li>
     
-        <li class="chapter " data-level="6.29" data-path="recipes/rollup-with-rollup-stream.html">
+        <li class="chapter active" data-level="6.29" data-path="recipes/rollup-with-rollup-stream.html">
             
                 
                     <a href="../recipes/rollup-with-rollup-stream.html">
@@ -787,24 +785,61 @@
                 
                     <section class="normal" id="section-">
                     
-                        <a id="edit-link" href="https://github.com/bipedd/gulp-docs/blob/master/recipes/minified-and-non-minified.md" class="btn fa fa-edit pull-left">&nbsp;&nbsp; </a><h1 id="output-both-a-minified-and-non-minified-version">Output both a minified and non-minified version</h1>
-<p>Outputting both a minified and non-minified version of your combined JavaScript files can be achieved by using <code>gulp-rename</code> and piping to <code>dest</code> twice (once before minifying and once after minifying):</p>
-<pre><code class="lang-js"><span class="hljs-pi">&apos;use strict&apos;</span>;
-
+                        <a id="edit-link" href="https://github.com/bipedd/gulp-docs/blob/master/recipes/rollup-with-rollup-stream.md" class="btn fa fa-edit pull-left">&nbsp;&nbsp; </a><h1 id="rollup-with-rollup-stream">Rollup with rollup-stream</h1>
+<p>Like Browserify, <a href="http://rollupjs.org/" target="_blank">Rollup</a> is a bundler and thus only fits naturally into gulp if it&apos;s at the start of the pipeline. Unlike Browserify, Rollup doesn&apos;t natively produce a stream as output and needs to be wrapped before it can take this position. <a href="https://github.com/Permutatrix/rollup-stream" target="_blank">rollup-stream</a> does this for you, producing output just like that of Browserify&apos;s <code>bundle()</code> method&#x2014;as a result, most of the Browserify recipes here will also work with rollup-stream.</p>
+<h2 id="basic-usage">Basic usage</h2>
+<pre><code class="lang-js"><span class="hljs-comment">// npm install --save-dev rollup-stream vinyl-source-stream</span>
 <span class="hljs-keyword">var</span> gulp = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp&apos;</span>);
-<span class="hljs-keyword">var</span> rename = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp-rename&apos;</span>);
-<span class="hljs-keyword">var</span> uglify = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp-uglify&apos;</span>);
+<span class="hljs-keyword">var</span> rollup = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;rollup-stream&apos;</span>);
+<span class="hljs-keyword">var</span> source = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;vinyl-source-stream&apos;</span>);
 
-<span class="hljs-keyword">var</span> DEST = <span class="hljs-string">&apos;build/&apos;</span>;
+gulp.task(<span class="hljs-string">&apos;rollup&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> rollup({
+      entry: <span class="hljs-string">&apos;./src/main.js&apos;</span>
+    })
 
-gulp.task(<span class="hljs-string">&apos;default&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">return</span> gulp.src(<span class="hljs-string">&apos;foo.js&apos;</span>)
-    <span class="hljs-comment">// This will output the non-minified version</span>
-    .pipe(gulp.dest(DEST))
-    <span class="hljs-comment">// This will minify and rename to foo.min.js</span>
-    .pipe(uglify())
-    .pipe(rename({ extname: <span class="hljs-string">&apos;.min.js&apos;</span> }))
-    .pipe(gulp.dest(DEST));
+    <span class="hljs-comment">// give the file the name you want to output with</span>
+    .pipe(source(<span class="hljs-string">&apos;app.js&apos;</span>))
+
+    <span class="hljs-comment">// and output to ./dist/app.js as normal.</span>
+    .pipe(gulp.dest(<span class="hljs-string">&apos;./dist&apos;</span>));
+});
+</code></pre>
+<h2 id="usage-with-sourcemaps">Usage with sourcemaps</h2>
+<pre><code class="lang-js"><span class="hljs-comment">// npm install --save-dev rollup-stream gulp-sourcemaps vinyl-source-stream vinyl-buffer</span>
+<span class="hljs-comment">// optional: npm install --save-dev gulp-rename</span>
+<span class="hljs-keyword">var</span> gulp = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp&apos;</span>);
+<span class="hljs-keyword">var</span> rollup = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;rollup-stream&apos;</span>);
+<span class="hljs-keyword">var</span> sourcemaps = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp-sourcemaps&apos;</span>);
+<span class="hljs-comment">//var rename = require(&apos;gulp-rename&apos;);</span>
+<span class="hljs-keyword">var</span> source = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;vinyl-source-stream&apos;</span>);
+<span class="hljs-keyword">var</span> buffer = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;vinyl-buffer&apos;</span>);
+
+gulp.task(<span class="hljs-string">&apos;rollup&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> rollup({
+      entry: <span class="hljs-string">&apos;./src/main.js&apos;</span>,
+      sourceMap: <span class="hljs-literal">true</span>
+    })
+
+    <span class="hljs-comment">// point to the entry file.</span>
+    .pipe(source(<span class="hljs-string">&apos;main.js&apos;</span>, <span class="hljs-string">&apos;./src&apos;</span>))
+
+    <span class="hljs-comment">// buffer the output. most gulp plugins, including gulp-sourcemaps, don&apos;t support streams.</span>
+    .pipe(buffer())
+
+    <span class="hljs-comment">// tell gulp-sourcemaps to load the inline sourcemap produced by rollup-stream.</span>
+    .pipe(sourcemaps.init({loadMaps: <span class="hljs-literal">true</span>}))
+
+        <span class="hljs-comment">// transform the code further here.</span>
+
+    <span class="hljs-comment">// if you want to output with a different name from the input file, use gulp-rename here.</span>
+    <span class="hljs-comment">//.pipe(rename(&apos;index.js&apos;))</span>
+
+    <span class="hljs-comment">// write the sourcemap alongside the output file.</span>
+    .pipe(sourcemaps.write(<span class="hljs-string">&apos;.&apos;</span>))
+
+    <span class="hljs-comment">// and output to ./dist/main.js as normal.</span>
+    .pipe(gulp.dest(<span class="hljs-string">&apos;./dist&apos;</span>));
 });
 </code></pre>
 
@@ -817,10 +852,8 @@ gulp.task(<span class="hljs-string">&apos;default&apos;</span>, <span class="hlj
         </div>
 
         
-        <a href="../recipes/browserify-multiple-destination.html" class="navigation navigation-prev " aria-label="Previous page: Browserify + Globs (multiple destination)"><i class="fa fa-angle-left"></i></a>
+        <a href="../recipes/exports-as-tasks.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Exports as tasks"><i class="fa fa-angle-left"></i></a>
         
-        
-        <a href="../recipes/templating-with-swig-and-yaml-front-matter.html" class="navigation navigation-next " aria-label="Next page: Templating with Swig and YAML front-matter"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
