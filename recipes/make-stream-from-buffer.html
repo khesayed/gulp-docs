@@ -1,758 +1,704 @@
+
 <!DOCTYPE HTML>
-<html lang="en" >
-    
+<html lang="" >
     <head>
-        
+        <title>Make stream from buffer (memory contents) · Gulp Documentation</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Make stream from buffer (memory contents) | Gulp Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="generator" content="GitBook 3.2.0-pre.1">
         
         
-        <meta name="HandheldFriendly" content="true"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
-        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
         
+    
     <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
     
         
-        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+    
         
     
         
-        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+    
         
     
         
-        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
-        
     
+        
     
 
         
     
     
-    <link rel="next" href="../recipes/mocha-test-runner-with-gulp.html" />
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="mocha-test-runner-with-gulp.html" />
     
     
-    <link rel="prev" href="../recipes/incremental-builds-with-concatenate.html" />
+    <link rel="prev" href="incremental-builds-with-concatenate.html" />
     
 
-        
     </head>
     <body>
         
+<div class="book">
+    <div class="book-summary">
         
-    <div class="book"
-        data-level="6.6"
-        data-chapter-title="Make stream from buffer (memory contents)"
-        data-filepath="recipes/make-stream-from-buffer.md"
-        data-basepath=".."
-        data-revision="Wed Jul 06 2016 19:12:21 GMT+0800 (CST)"
-        data-innerlanguage="">
-    
-
-<div class="book-summary">
-    <nav role="navigation">
-        <ul class="summary">
             
-            
-            
-            
-
-            
-
-            
-    
-        <li class="chapter " data-level="0" data-path="index.html">
-            
-                
-                    <a href="../index.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                        Introduction
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="1" data-path="getting-started.html">
-            
-                
-                    <a href="../getting-started.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>1.</b>
-                        
-                        Getting Started
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="2" data-path="API.html">
-            
-                
-                    <a href="../API.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>2.</b>
-                        
-                        API
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3" data-path="CLI.html">
-            
-                
-                    <a href="../CLI.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.</b>
-                        
-                        CLI
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="4" data-path="writing-a-plugin/index.html">
-            
-                
-                    <a href="../writing-a-plugin/index.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>4.</b>
-                        
-                        Writing a Plugin
-                    </a>
-            
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="4.1" data-path="writing-a-plugin/guidelines.html">
-            
-                
-                    <a href="../writing-a-plugin/guidelines.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>4.1.</b>
-                        
-                        Guidelines
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="4.2" data-path="writing-a-plugin/using-buffers.html">
-            
-                
-                    <a href="../writing-a-plugin/using-buffers.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>4.2.</b>
-                        
-                        Using buffers
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3" data-path="writing-a-plugin/dealing-with-streams.html">
-            
-                
-                    <a href="../writing-a-plugin/dealing-with-streams.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>4.3.</b>
-                        
-                        Dealing with streams
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="4.4" data-path="writing-a-plugin/testing.html">
-            
-                
-                    <a href="../writing-a-plugin/testing.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>4.4.</b>
-                        
-                        Testing
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="4.5" data-path="writing-a-plugin/recommended-modules.html">
-            
-                
-                    <a href="../writing-a-plugin/recommended-modules.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>4.5.</b>
-                        
-                        Recommended Modules
-                    </a>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="5" data-path="FAQ.html">
-            
-                
-                    <a href="../FAQ.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>5.</b>
-                        
-                        FAQ
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="6" data-path="recipes/index.html">
-            
-                
-                    <a href="../recipes/index.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.</b>
-                        
-                        Recipes
-                    </a>
-            
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="6.1" data-path="recipes/automate-release-workflow.html">
-            
-                
-                    <a href="../recipes/automate-release-workflow.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.1.</b>
-                        
-                        Automate release workflow
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="6.2" data-path="recipes/combining-streams-to-handle-errors.html">
-            
-                
-                    <a href="../recipes/combining-streams-to-handle-errors.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.</b>
-                        
-                        Combining streams to handle errors
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="6.3" data-path="recipes/delete-files-folder.html">
-            
-                
-                    <a href="../recipes/delete-files-folder.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.3.</b>
-                        
-                        Delete files and folders
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="6.4" data-path="recipes/fast-browserify-builds-with-watchify.html">
-            
-                
-                    <a href="../recipes/fast-browserify-builds-with-watchify.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.4.</b>
-                        
-                        Fast browserify builds with watchify
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="6.5" data-path="recipes/incremental-builds-with-concatenate.html">
-            
-                
-                    <a href="../recipes/incremental-builds-with-concatenate.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.5.</b>
-                        
-                        Incremental rebuilding, including operating on full file sets
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter active" data-level="6.6" data-path="recipes/make-stream-from-buffer.html">
-            
-                
-                    <a href="../recipes/make-stream-from-buffer.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.6.</b>
-                        
-                        Make stream from buffer (memory contents)
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="6.7" data-path="recipes/mocha-test-runner-with-gulp.html">
-            
-                
-                    <a href="../recipes/mocha-test-runner-with-gulp.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.7.</b>
-                        
-                        Mocha test-runner with gulp
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="6.8" data-path="recipes/only-pass-through-changed-files.html">
-            
-                
-                    <a href="../recipes/only-pass-through-changed-files.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.8.</b>
-                        
-                        Only pass through changed files
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="6.9" data-path="recipes/pass-arguments-from-cli.html">
-            
-                
-                    <a href="../recipes/pass-arguments-from-cli.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.9.</b>
-                        
-                        Pass parameters from the command line
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="6.10" data-path="recipes/rebuild-only-files-that-change.html">
-            
-                
-                    <a href="../recipes/rebuild-only-files-that-change.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.10.</b>
-                        
-                        Rebuild only files that change
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="6.11" data-path="recipes/running-task-steps-per-folder.html">
-            
-                
-                    <a href="../recipes/running-task-steps-per-folder.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.11.</b>
-                        
-                        Generating a file per folder
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="6.12" data-path="recipes/running-tasks-in-series.html">
-            
-                
-                    <a href="../recipes/running-tasks-in-series.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.12.</b>
-                        
-                        Running tasks in series
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="6.13" data-path="recipes/server-with-livereload-and-css-injection.html">
-            
-                
-                    <a href="../recipes/server-with-livereload-and-css-injection.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.13.</b>
-                        
-                        Server with live-reloading and CSS injection
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="6.14" data-path="recipes/sharing-streams-with-stream-factories.html">
-            
-                
-                    <a href="../recipes/sharing-streams-with-stream-factories.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.14.</b>
-                        
-                        Sharing streams with stream factories
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="6.15" data-path="recipes/specifying-a-cwd.html">
-            
-                
-                    <a href="../recipes/specifying-a-cwd.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.15.</b>
-                        
-                        Specifying a new cwd (current working directory)
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="6.16" data-path="recipes/split-tasks-across-multiple-files.html">
-            
-                
-                    <a href="../recipes/split-tasks-across-multiple-files.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.16.</b>
-                        
-                        Split tasks across multiple files
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="6.17" data-path="recipes/using-external-config-file.html">
-            
-                
-                    <a href="../recipes/using-external-config-file.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.17.</b>
-                        
-                        Using external config file
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="6.18" data-path="recipes/using-multiple-sources-in-one-task.html">
-            
-                
-                    <a href="../recipes/using-multiple-sources-in-one-task.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.18.</b>
-                        
-                        Using multiple sources in one task
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="6.19" data-path="recipes/browserify-transforms.html">
-            
-                
-                    <a href="../recipes/browserify-transforms.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.19.</b>
-                        
-                        Browserify + Transforms
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="6.20" data-path="recipes/browserify-uglify-sourcemap.html">
-            
-                
-                    <a href="../recipes/browserify-uglify-sourcemap.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.20.</b>
-                        
-                        Browserify + Uglify with sourcemaps
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="6.21" data-path="recipes/browserify-with-globs.html">
-            
-                
-                    <a href="../recipes/browserify-with-globs.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.21.</b>
-                        
-                        Browserify + Globs
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="6.22" data-path="recipes/browserify-multiple-destination.html">
-            
-                
-                    <a href="../recipes/browserify-multiple-destination.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.22.</b>
-                        
-                        Browserify + Globs (multiple destination)
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="6.23" data-path="recipes/minified-and-non-minified.html">
-            
-                
-                    <a href="../recipes/minified-and-non-minified.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.23.</b>
-                        
-                        Output both a minified and non-minified version
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="6.24" data-path="recipes/templating-with-swig-and-yaml-front-matter.html">
-            
-                
-                    <a href="../recipes/templating-with-swig-and-yaml-front-matter.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.24.</b>
-                        
-                        Templating with Swig and YAML front-matter
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="6.25" data-path="recipes/handling-the-delete-event-on-watch.html">
-            
-                
-                    <a href="../recipes/handling-the-delete-event-on-watch.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.25.</b>
-                        
-                        Handling the Delete Event on Watch
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="6.26" data-path="recipes/maintain-directory-structure-while-globbing.html">
-            
-                
-                    <a href="../recipes/maintain-directory-structure-while-globbing.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.26.</b>
-                        
-                        Maintain Directory Structure while Globbing
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="6.27" data-path="recipes/run-grunt-tasks-from-gulp.html">
-            
-                
-                    <a href="../recipes/run-grunt-tasks-from-gulp.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.27.</b>
-                        
-                        Run Grunt Tasks from Gulp
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="6.28" data-path="recipes/exports-as-tasks.html">
-            
-                
-                    <a href="../recipes/exports-as-tasks.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.28.</b>
-                        
-                        Exports as tasks
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="6.29" data-path="recipes/rollup-with-rollup-stream.html">
-            
-                
-                    <a href="../recipes/rollup-with-rollup-stream.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.29.</b>
-                        
-                        Rollup with rollup-stream
-                    </a>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-
-            
-            <li class="divider"></li>
-            <li>
-                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-                    Published with GitBook
-                </a>
-            </li>
-            
-        </ul>
-    </nav>
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
 </div>
 
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../../../../">
+            
+                <a href="../../../../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../getting-started.html">
+            
+                <a href="../getting-started.html">
+            
+                    
+                    Getting Started
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../API.html">
+            
+                <a href="../API.html">
+            
+                    
+                    API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../CLI.html">
+            
+                <a href="../CLI.html">
+            
+                    
+                    CLI
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../writing-a-plugin/">
+            
+                <a href="../writing-a-plugin/">
+            
+                    
+                    Writing a Plugin
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../writing-a-plugin/guidelines.html">
+            
+                <a href="../writing-a-plugin/guidelines.html">
+            
+                    
+                    Guidelines
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../writing-a-plugin/using-buffers.html">
+            
+                <a href="../writing-a-plugin/using-buffers.html">
+            
+                    
+                    Using buffers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../writing-a-plugin/dealing-with-streams.html">
+            
+                <a href="../writing-a-plugin/dealing-with-streams.html">
+            
+                    
+                    Dealing with streams
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../writing-a-plugin/testing.html">
+            
+                <a href="../writing-a-plugin/testing.html">
+            
+                    
+                    Testing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="../writing-a-plugin/recommended-modules.html">
+            
+                <a href="../writing-a-plugin/recommended-modules.html">
+            
+                    
+                    Recommended Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../FAQ.html">
+            
+                <a href="../FAQ.html">
+            
+                    
+                    FAQ
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Recipes
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="automate-release-workflow.html">
+            
+                <a href="automate-release-workflow.html">
+            
+                    
+                    Automate release workflow
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="combining-streams-to-handle-errors.html">
+            
+                <a href="combining-streams-to-handle-errors.html">
+            
+                    
+                    Combining streams to handle errors
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="delete-files-folder.html">
+            
+                <a href="delete-files-folder.html">
+            
+                    
+                    Delete files and folders
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="fast-browserify-builds-with-watchify.html">
+            
+                <a href="fast-browserify-builds-with-watchify.html">
+            
+                    
+                    Fast browserify builds with watchify
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5" data-path="incremental-builds-with-concatenate.html">
+            
+                <a href="incremental-builds-with-concatenate.html">
+            
+                    
+                    Incremental rebuilding, including operating on full file sets
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.7.6" data-path="make-stream-from-buffer.html">
+            
+                <a href="make-stream-from-buffer.html">
+            
+                    
+                    Make stream from buffer (memory contents)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.7" data-path="mocha-test-runner-with-gulp.html">
+            
+                <a href="mocha-test-runner-with-gulp.html">
+            
+                    
+                    Mocha test-runner with gulp
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.8" data-path="only-pass-through-changed-files.html">
+            
+                <a href="only-pass-through-changed-files.html">
+            
+                    
+                    Only pass through changed files
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.9" data-path="pass-arguments-from-cli.html">
+            
+                <a href="pass-arguments-from-cli.html">
+            
+                    
+                    Pass parameters from the command line
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.10" data-path="rebuild-only-files-that-change.html">
+            
+                <a href="rebuild-only-files-that-change.html">
+            
+                    
+                    Rebuild only files that change
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.11" data-path="running-task-steps-per-folder.html">
+            
+                <a href="running-task-steps-per-folder.html">
+            
+                    
+                    Generating a file per folder
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.12" data-path="running-tasks-in-series.html">
+            
+                <a href="running-tasks-in-series.html">
+            
+                    
+                    Running tasks in series
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.13" data-path="server-with-livereload-and-css-injection.html">
+            
+                <a href="server-with-livereload-and-css-injection.html">
+            
+                    
+                    Server with live-reloading and CSS injection
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.14" data-path="sharing-streams-with-stream-factories.html">
+            
+                <a href="sharing-streams-with-stream-factories.html">
+            
+                    
+                    Sharing streams with stream factories
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.15" data-path="specifying-a-cwd.html">
+            
+                <a href="specifying-a-cwd.html">
+            
+                    
+                    Specifying a new cwd (current working directory)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.16" data-path="split-tasks-across-multiple-files.html">
+            
+                <a href="split-tasks-across-multiple-files.html">
+            
+                    
+                    Split tasks across multiple files
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.17" data-path="using-external-config-file.html">
+            
+                <a href="using-external-config-file.html">
+            
+                    
+                    Using external config file
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.18" data-path="using-multiple-sources-in-one-task.html">
+            
+                <a href="using-multiple-sources-in-one-task.html">
+            
+                    
+                    Using multiple sources in one task
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.19" data-path="browserify-transforms.html">
+            
+                <a href="browserify-transforms.html">
+            
+                    
+                    Browserify + Transforms
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.20" data-path="browserify-uglify-sourcemap.html">
+            
+                <a href="browserify-uglify-sourcemap.html">
+            
+                    
+                    Browserify + Uglify with sourcemaps
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.21" data-path="browserify-with-globs.html">
+            
+                <a href="browserify-with-globs.html">
+            
+                    
+                    Browserify + Globs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.22" data-path="browserify-multiple-destination.html">
+            
+                <a href="browserify-multiple-destination.html">
+            
+                    
+                    Browserify + Globs (multiple destination)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.23" data-path="minified-and-non-minified.html">
+            
+                <a href="minified-and-non-minified.html">
+            
+                    
+                    Output both a minified and non-minified version
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.24" data-path="templating-with-swig-and-yaml-front-matter.html">
+            
+                <a href="templating-with-swig-and-yaml-front-matter.html">
+            
+                    
+                    Templating with Swig and YAML front-matter
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.25" data-path="handling-the-delete-event-on-watch.html">
+            
+                <a href="handling-the-delete-event-on-watch.html">
+            
+                    
+                    Handling the Delete Event on Watch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.26" data-path="maintain-directory-structure-while-globbing.html">
+            
+                <a href="maintain-directory-structure-while-globbing.html">
+            
+                    
+                    Maintain Directory Structure while Globbing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.27" data-path="run-grunt-tasks-from-gulp.html">
+            
+                <a href="run-grunt-tasks-from-gulp.html">
+            
+                    
+                    Run Grunt Tasks from Gulp
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.28" data-path="exports-as-tasks.html">
+            
+                <a href="exports-as-tasks.html">
+            
+                    
+                    Exports as tasks
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.29" data-path="rollup-with-rollup-stream.html">
+            
+                <a href="rollup-with-rollup-stream.html">
+            
+                    
+                    Rollup with rollup-stream
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
     <div class="book-body">
-        <div class="body-inner">
-            <div class="book-header" role="navigation">
-    <!-- Actions Left -->
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
     
 
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Gulp Documentation</a>
+        <a href=".." >Make stream from buffer (memory contents)</a>
     </h1>
 </div>
 
-            <div class="page-wrapper" tabindex="-1" role="main">
-                <div class="page-inner">
-                
-                
-                    <section class="normal" id="section-">
-                    
-                        <h1 id="make-stream-from-buffer-memory-contents">Make stream from buffer (memory contents)</h1>
-<p>Sometimes you may need to start a stream with files that their contents are in a variable and not in a physical file. In other words, how to start a &apos;gulp&apos; stream without using <code>gulp.src()</code>.</p>
-<p>Let&apos;s say for example that we have a directory with js lib files and another directory with versions of some module. The target of the build would be to create one js file for each version, containing all the libs and the version of the module concatenated.</p>
-<p>Logically we would break it down like this:</p>
-<ul>
-<li>load the lib files</li>
-<li>concatenate the lib file contents</li>
-<li>load the versions files</li>
-<li>for each version file, concatenate the libs&apos; contents and the version file contents</li>
-<li>for each version file, output the result in a file</li>
-</ul>
-<p>Imagine this file structure:</p>
-<pre><code class="lang-sh">&#x251C;&#x2500;&#x2500; libs
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="make-stream-from-buffer-memory-contents">Make stream from buffer (memory contents)</h1><p>Sometimes you may need to start a stream with files that their contents are in a variable and not in a physical file. In other words, how to start a &apos;gulp&apos; stream without using <code>gulp.src()</code>.</p><p>Let&apos;s say for example that we have a directory with js lib files and another directory with versions of some module. The target of the build would be to create one js file for each version, containing all the libs and the version of the module concatenated.</p><p>Logically we would break it down like this:</p><ul><li>load the lib files
+</li>
+<li>concatenate the lib file contents
+</li>
+<li>load the versions files
+</li>
+<li>for each version file, concatenate the libs&apos; contents and the version file contents
+</li>
+<li>for each version file, output the result in a file
+</li></ul>
+<p>Imagine this file structure:</p><pre><code class="lang-sh">&#x251C;&#x2500;&#x2500; libs
 &#x2502;   &#x251C;&#x2500;&#x2500; lib1.js
 &#x2502;   &#x2514;&#x2500;&#x2500; lib2.js
 &#x2514;&#x2500;&#x2500; versions
-    &#x251C;&#x2500;&#x2500; version.<span class="hljs-number">1</span>.js
-    &#x2514;&#x2500;&#x2500; version.<span class="hljs-number">2</span>.js
-</code></pre>
-<p>You should get:</p>
-<pre><code class="lang-sh">&#x2514;&#x2500;&#x2500; output
-    &#x251C;&#x2500;&#x2500; version.<span class="hljs-number">1</span>.complete.js <span class="hljs-comment"># lib1.js + lib2.js + version.1.js</span>
-    &#x2514;&#x2500;&#x2500; version.<span class="hljs-number">2</span>.complete.js <span class="hljs-comment"># lib1.js + lib2.js + version.2.js</span>
-</code></pre>
-<p>A simple and modular way to do this would be the following:</p>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> gulp = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp&apos;</span>);
+    &#x251C;&#x2500;&#x2500; version.1.js
+    &#x2514;&#x2500;&#x2500; version.2.js</code></pre>
+<p>You should get:</p><pre><code class="lang-sh">&#x2514;&#x2500;&#x2500; output
+    &#x251C;&#x2500;&#x2500; version.1.complete.js <span class="hljs-comment"># lib1.js + lib2.js + version.1.js</span>
+    &#x2514;&#x2500;&#x2500; version.2.complete.js <span class="hljs-comment"># lib1.js + lib2.js + version.2.js</span></code></pre>
+<p>A simple and modular way to do this would be the following:</p><pre><code class="lang-js"><span class="hljs-keyword">var</span> gulp = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;gulp&apos;</span>);
 <span class="hljs-keyword">var</span> runSequence = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;run-sequence&apos;</span>);
 <span class="hljs-keyword">var</span> source = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;vinyl-source-stream&apos;</span>);
 <span class="hljs-keyword">var</span> vinylBuffer = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;vinyl-buffer&apos;</span>);
@@ -854,65 +800,96 @@ gulp.task(<span class="hljs-string">&apos;watch&apos;</span>, [<span class="hljs
       <span class="hljs-string">&apos;write-versions&apos;</span>
     );
   });
-});
-</code></pre>
+});</code></pre>
 
-                    
-                    </section>
-                
-                
-                </div>
-            </div>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
         </div>
-
-        
-        <a href="../recipes/incremental-builds-with-concatenate.html" class="navigation navigation-prev " aria-label="Previous page: Incremental rebuilding, including operating on full file sets"><i class="fa fa-angle-left"></i></a>
-        
-        
-        <a href="../recipes/mocha-test-runner-with-gulp.html" class="navigation navigation-next " aria-label="Next page: Mocha test-runner with gulp"><i class="fa fa-angle-right"></i></a>
-        
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
     </div>
 </div>
 
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="incremental-builds-with-concatenate.html" class="navigation navigation-prev " aria-label="Previous page: Incremental rebuilding, including operating on full file sets">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="mocha-test-runner-with-gulp.html" class="navigation navigation-next " aria-label="Next page: Mocha test-runner with gulp">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
         
-<script src="../gitbook/app.js"></script>
+    </div>
 
-    
-    <script src="../gitbook/plugins/gitbook-plugin-edit-link/plugin.js"></script>
-    
-
-    
-    <script src="../gitbook/plugins/gitbook-plugin-ga/plugin.js"></script>
-    
-
-    
-    <script src="../gitbook/plugins/gitbook-plugin-github/plugin.js"></script>
-    
-
-    
-    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
-    
-
-    
-    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
-    
-
-    
-    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
-    
-
-    
-    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
-    
-
-<script>
-require(["gitbook"], function(gitbook) {
-    var config = {"edit-link":{"base":"https://github.com/bipedd/gulp-docs/blob/master","label":""},"ga":{"token":"UA-36637973-3","configuration":"auto"},"github":{"url":"https://github.com/bipedd/gulp-docs"},"sitemap":{"hostname":"http://gulpjs.org/"},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"highlight":{},"search":{"maxIndexSize":1000000},"fontsettings":{"theme":"white","family":"sans","size":2}};
-    gitbook.start(config);
-});
-</script>
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Make stream from buffer (memory contents)","level":"1.7.6","depth":2,"next":{"title":"Mocha test-runner with gulp","level":"1.7.7","depth":2,"path":"recipes/mocha-test-runner-with-gulp.md","ref":"recipes/mocha-test-runner-with-gulp.md","articles":[]},"previous":{"title":"Incremental rebuilding, including operating on full file sets","level":"1.7.5","depth":2,"path":"recipes/incremental-builds-with-concatenate.md","ref":"recipes/incremental-builds-with-concatenate.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","ga","github","sitemap"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/bipedd/gulp-docs/docs"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sitemap":{"hostname":"http://gulpjs.org/"},"ga":{"configuration":"auto","token":"UA-36637973-3"},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"","base":"https://github.com/bipedd/gulp-docs/blob/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Gulp Documentation","gitbook":"*","description":"Unofficial site for better reading experience of gulp documentation."},"file":{"path":"recipes/make-stream-from-buffer.md","mtime":"2016-07-06T13:48:43.000Z","type":"markdown"},"gitbook":{"version":"3.2.0-pre.1","time":"2016-07-07T10:26:09.997Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
 
         
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-ga/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
     </body>
-    
 </html>
+
